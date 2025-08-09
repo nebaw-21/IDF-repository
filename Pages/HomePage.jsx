@@ -7,6 +7,7 @@ import ServiceSection from "../src/Components/ServiceSection";
 import CorevalueSection from "../src/Components/CorevalueSection";
 import ProjectSection from "../src/Components/projectSection";
 import WorkedWithSection from "../src/Components/WorkedWithSection";
+import ContactSection from "../src/Components/ContactUsSection";
 
 function HomePage() {
    
@@ -19,6 +20,7 @@ function HomePage() {
  <CorevalueSection/>
  <ProjectSection/>
  <WorkedWithSection/>
+ <ContactSection/>
  
  <Footer/>
     </>
