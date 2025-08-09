@@ -6,6 +6,7 @@ import AboutSection from "../src/Components/AboutSection";
 import ServiceSection from "../src/Components/ServiceSection";
 import CorevalueSection from "../src/Components/CorevalueSection";
 import ProjectSection from "../src/Components/projectSection";
+import WorkedWithSection from "../src/Components/WorkedWithSection";
 
 function HomePage() {
    
@@ -17,7 +18,8 @@ function HomePage() {
  <ServiceSection/>
  <CorevalueSection/>
  <ProjectSection/>
- <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+ <WorkedWithSection/>
+ 
  <Footer/>
     </>
   );
