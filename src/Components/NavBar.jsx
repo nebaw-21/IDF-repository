@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import Logo from "../assets/logo.jpg"
 
 export default function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -92,7 +93,7 @@ export default function Menubar() {
               onClick={() => scrollToSection('home')}
               className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
             >
-              YourLogo
+              <img src={Logo} alt="Logo" className="w-25 h-20  p-4  cover-fit" />
             </button>
           </div>
 

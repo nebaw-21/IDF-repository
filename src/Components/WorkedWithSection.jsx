@@ -1,15 +1,21 @@
 import React from "react"
+import ECC from "../assets/ECC.png"
+import II from "../assets/II.png"
+import EMI from "../assets/EMI.png"
+import mit from "../assets/mit.png"
+import icap from "../assets/icap.svg"
+
 export default function WorkedWithSection() {
   const partnerLogos = [
-    { src: "/public/images/industry-info-logo.png", alt: "Industry Information System Logo" },
-    { src: "../assets/Ethiopian Chamber of Commerce and Sectoral Association.png", alt: "Ethiopian Chamber of Commerce Logo" },
-    { src: "/public/images/icap-logo-bw.png", alt: "ICAP Global Health Logo" },
-    { src: "/public/images/mit-logo-bw.png", alt: "MIT Logo" },
+    { src: EMI, alt: "EMI Logo" },
+    { src: ECC, alt: "Ethiopian Chamber of Commerce Logo" },
+    { src: icap, alt: "ICAP Global Health Logo" },
+    { src: mit, alt: "MIT Logo" },
     // Duplicate logos to create a seamless loop
-    { src: "/public/images/industry-info-logo.png", alt: "Industry Information System Logo" },
-    { src: "/public/images/eccsa-logo.png", alt: "Ethiopian Chamber of Commerce Logo" },
-    { src: "/public/images/icap-logo-bw.png", alt: "ICAP Global Health Logo" },
-    { src: "/public/images/mit-logo-bw.png", alt: "MIT Logo" },
+    { src: II, alt: "Industry Information System Logo" },
+    { src: ECC, alt: "Ethiopian Chamber of Commerce Logo" },
+    { src: icap, alt: "ICAP Global Health Logo" },
+    { src: mit, alt: "MIT Logo" },
   ]
 
   return (
@@ -26,9 +32,9 @@ export default function WorkedWithSection() {
           {partnerLogos.map((logo, index) => (
             <div key={index} className="flex-shrink-0 mx-8 sm:mx-12 md:mx-16 lg:mx-20">
               <img
-                src={logo.src || "/placeholder.svg"}
+                src={logo.src}
                 alt={logo.alt}
-                className="h-16 sm:h-20 md:h-24 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                className="h-16 sm:h-20 md:h-24 object-contain transition-all duration-300"
               />
             </div>
           ))}

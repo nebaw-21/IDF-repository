@@ -1,6 +1,10 @@
 import React from "react"
 import { useState, useRef, useEffect } from "react"
 import { ArrowUpRight } from "lucide-react" // Using Lucide React for icons
+import ECC from "../assets/ECC.png"
+import II from "../assets/II.png"
+import Lab from "../assets/lab.png"
+import erp from "../assets/erp.jpg"
 
 export default function ProjectsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -9,7 +13,7 @@ export default function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      image: "/images/eccsa-logo.png",
+      image: ECC,
       title: "Ethiopian Chamber of Commerce Digital Service (ECDS)",
       description:
         "A web-based portal enabling ECCSA to offer services digitally to its members and the public, including online registration and service delivery.",
@@ -17,7 +21,7 @@ export default function ProjectsSection() {
     },
     {
       id: 2,
-      image: "/images/industry-info-logo.png",
+      image: II,
       title: "Industry Information System",
       description:
         "A data warehousing and visualization platform integrating national and international data sources for the Ministry of Industry.",
@@ -25,7 +29,7 @@ export default function ProjectsSection() {
     },
     {
       id: 3,
-      image: "/images/chemistry-lab-logo.png",
+      image: Lab,
       title: "Student Chemistry Lab Simulation",
       description:
         "A virtual laboratory environment for Grade 11 Chemistry that enhances practical understanding and bridges lab access gaps in schools.",
@@ -33,7 +37,7 @@ export default function ProjectsSection() {
     },
     {
       id: 4,
-      image: "/images/idf-erp-logo.png",
+      image: erp,
       title: "IDF ERP",
       description:
         "A full-stack intelligent ERP solution that brings significant business operations from marketing, lead generation, CRM, inventory, purchases, payroll, and project management to accounting in one platform.",
@@ -143,7 +147,7 @@ export default function ProjectsSection() {
                   <div className="flex items-start mb-6">
                     <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
                       <img
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image}
                         alt={`${project.title} logo`}
                         className="w-full h-full object-contain p-2"
                       />
