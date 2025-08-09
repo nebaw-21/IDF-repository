@@ -101,7 +101,26 @@ export default function Menubar() {
               className="absolute top-16 right-0 w-64 h-full bg-gradient-to-b from-[#1A2F55]/95 to-[#0F1B3C]/95 backdrop-blur-md border-l border-[#5BC0F8]/20 shadow-2xl"
               style={{ animation: 'slideInRight 0.3s ease-out' }}
             >
-              <div className="px-4 pt-6 pb-8 space-y-2">
+              {/* Close X Button */}
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10 rounded-full transition-all duration-300 z-10"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="px-4 pt-12 pb-8 space-y-2">
                 {menuItems.map((item, index) => (
                   <a
                     key={item.name}
@@ -115,19 +134,6 @@ export default function Menubar() {
                     {item.name}
                   </a>
                 ))}
-                
-                {/* Close button */}
-                <div 
-                  className="pt-4 border-t border-[#5BC0F8]/20 mt-6"
-                  style={{ animation: 'slideInRight 0.3s ease-out 0.6s both' }}
-                >
-                  <button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="w-full text-white hover:text-[#5BC0F8] px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300"
-                  >
-                    Close Menu
-                  </button>
-                </div>
               </div>
             </div>
           </div>
