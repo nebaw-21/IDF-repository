@@ -167,56 +167,24 @@ export default function Menubar() {
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 z-50">
-            {/* Backdrop */}
-            <div 
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out"
-              onClick={() => setIsMenuOpen(false)}
-              style={{ animation: 'fadeIn 0.3s ease-out' }}
-            ></div>
-            
-            {/* Menu Panel */}
-            <div 
-              className="absolute top-16 right-0 w-64 h-full bg-gradient-to-b from-[#1A2F55]/95 to-[#0F1B3C]/95 backdrop-blur-md border-l border-[#5BC0F8]/20 shadow-2xl"
-              style={{ animation: 'slideInRight 0.3s ease-out' }}
-            >
-              {/* Close X Button */}
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10 rounded-full transition-all duration-300 z-10"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-gradient-to-b from-[#1A2F55]/95 to-[#0F1B3C]/95 backdrop-blur-md border-t border-[#5BC0F8]/20 shadow-2xl z-40">
+            <div className="px-4 py-4 space-y-2">
+              {menuItems.map((item, index) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium ${
+                    activeSection === item.href
+                      ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
+                      : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
+                  }`}
+                  style={{ 
+                    animation: `slideInDown 0.3s ease-out ${index * 0.1}s both`
+                  }}
                 >
-                  <path d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-
-              <div className="px-4 pt-12 pb-8 space-y-2">
-                {menuItems.map((item, index) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.href)}
-                    className={`w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium ${
-                      activeSection === item.href
-                        ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
-                        : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
-                    }`}
-                    style={{ 
-                      animation: `slideInRight 0.3s ease-out ${index * 0.1}s both`
-                    }}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </div>
+                  {item.name}
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -243,14 +211,14 @@ export default function Menubar() {
           }
         }
         
-        @keyframes slideInRight {
+        @keyframes slideInDown {
           from {
             opacity: 0;
-            transform: translateX(100%);
+            transform: translateY(-10px);
           }
           to {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
           }
         }
         
