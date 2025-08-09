@@ -1,0 +1,138 @@
+import React from 'react';
+import { useState, useEffect } from 'react'
+
+export default function Menubar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const toggleMenu = () => {
+    if (!isAnimating) {
+      setIsAnimating(true)
+      setIsMenuOpen(!isMenuOpen)
+      setTimeout(() => setIsAnimating(false), 300)
+    }
+  }
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
+  const menuItems = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Contact', href: '#contact' }
+  ]
+
+  return (
+    <nav className="bg-[#1A2F55] shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <a href="#" className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors">
+              YourLogo
+            </a>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
+              {menuItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-white hover:text-[#5BC0F8] px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-[#5BC0F8]/10 rounded-md"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-white hover:text-[#5BC0F8] focus:outline-none focus:text-[#5BC0F8] p-2"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div className="md:hidden fixed inset-0 z-50">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out"
+              onClick={() => setIsMenuOpen(false)}
+              style={{ animation: 'fadeIn 0.3s ease-out' }}
+            ></div>
+            
+            {/* Menu Panel */}
+            <div 
+              className="absolute top-16 right-0 w-64 h-full bg-gradient-to-b from-[#1A2F55]/95 to-[#0F1B3C]/95 backdrop-blur-md border-l border-[#5BC0F8]/20 shadow-2xl"
+              style={{ animation: 'slideInRight 0.3s ease-out' }}
+            >
+              <div className="px-4 pt-6 pb-8 space-y-2">
+                {menuItems.map((item, index) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-white hover:text-[#5BC0F8] block px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300 transform hover:translate-x-2"
+                    onClick={() => setIsMenuOpen(false)}
+                    style={{ 
+                      animation: `slideInRight 0.3s ease-out ${index * 0.1}s both`
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                
+                {/* Close button */}
+                <div 
+                  className="pt-4 border-t border-[#5BC0F8]/20 mt-6"
+                  style={{ animation: 'slideInRight 0.3s ease-out 0.6s both' }}
+                >
+                  <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-full text-white hover:text-[#5BC0F8] px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300"
+                  >
+                    Close Menu
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  )
+}
