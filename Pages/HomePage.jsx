@@ -4,6 +4,7 @@ import HeroSection from "../src/Components/HeroSection";
 import Footer from "../src/Components/FooterSection";
 import AboutSection from "../src/Components/AboutSection";
 import ServiceSection from "../src/Components/ServiceSection";
+import CorevalueSection from "../src/Components/CorevalueSection";
 
 function HomePage() {
    
@@ -13,6 +14,7 @@ function HomePage() {
  <HeroSection/>
  <AboutSection/>
  <ServiceSection/>
+ <CorevalueSection/>
  <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
  <Footer/>
     </>
