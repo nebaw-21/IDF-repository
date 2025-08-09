@@ -3,6 +3,9 @@ import React from "react"
 export default function ServicesSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const carouselContainerRef = useRef(null)
 
   const services = [
     {
@@ -79,10 +82,30 @@ export default function ServicesSection() {
     }
   }, [currentIndex])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    if (headerRef.current) observer.observe(headerRef.current)
+    if (carouselContainerRef.current) observer.observe(carouselContainerRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="services"
-      className="relative py-10 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20" // Changed background to light blue/white
+      className="relative py-10 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in" // Changed background to light blue/white
     >
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
@@ -93,7 +116,7 @@ export default function ServicesSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div ref={headerRef} className="text-center mb-12 sm:mb-16 animate-slide-up">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             Our <span className="text-[#5BC0F8]">Cutting-Edge Services</span>
           </h2>
@@ -103,11 +126,11 @@ export default function ServicesSection() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div ref={carouselContainerRef} className="relative animate-slide-up-delay">
           {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#5BC0F8] text-white p-3 rounded-full shadow-lg hover:bg-[#FFA500] transition-colors duration-300 z-20 hidden md:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#5BC0F8] text-white p-3 rounded-full shadow-lg hover:bg-[#FFA500] transition-colors duration-300 z-20 hidden md:block animate-fade-in-delay-2"
             aria-label="Previous service"
           >
             <svg
@@ -122,7 +145,7 @@ export default function ServicesSection() {
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#5BC0F8] text-white p-3 rounded-full shadow-lg hover:bg-[#FFA500] transition-colors duration-300 z-20 hidden md:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#5BC0F8] text-white p-3 rounded-full shadow-lg hover:bg-[#FFA500] transition-colors duration-300 z-20 hidden md:block animate-fade-in-delay-2"
             aria-label="Next service"
           >
             <svg
@@ -147,7 +170,7 @@ export default function ServicesSection() {
                 className="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)]" // Responsive widths
               >
                 <div
-                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-300 ${
+                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-${index + 3} ${
                     index === currentIndex ? "border-[#5BC0F8] shadow-2xl" : ""
                   }`}
                 >
@@ -162,7 +185,7 @@ export default function ServicesSection() {
           </div>
 
           {/* Carousel Dots */}
-          <div className="flex justify-center mt-8 space-x-3">
+          <div className="flex justify-center mt-8 space-x-3 animate-fade-in-delay-11">
             {services.map((_, index) => (
               <button
                 key={index}
@@ -208,6 +231,91 @@ export default function ServicesSection() {
         .scrollbar-hide {
           -ms-overflow-style: none; /* IE and Edge */
           scrollbar-width: none; /* Firefox */
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-slide-up {
+          animation: slideUp 1s ease-out forwards;
+        }
+        
+        .animate-slide-up-delay {
+          animation: slideUp 1s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.8s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-3 {
+          animation: fadeIn 0.8s ease-out 0.5s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-4 {
+          animation: fadeIn 0.8s ease-out 0.6s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-5 {
+          animation: fadeIn 0.8s ease-out 0.7s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-6 {
+          animation: fadeIn 0.8s ease-out 0.8s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-7 {
+          animation: fadeIn 0.8s ease-out 0.9s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-8 {
+          animation: fadeIn 0.8s ease-out 1.0s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-9 {
+          animation: fadeIn 0.8s ease-out 1.1s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-10 {
+          animation: fadeIn 0.8s ease-out 1.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-11 {
+          animation: fadeIn 0.8s ease-out 1.3s forwards;
+          opacity: 0;
         }
       `}</style>
     </section>

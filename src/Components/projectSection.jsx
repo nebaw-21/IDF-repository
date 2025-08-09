@@ -1,5 +1,4 @@
-import React from "react"
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { ArrowUpRight } from "lucide-react" // Using Lucide React for icons
 import ECC from "../assets/ECC.png"
 import II from "../assets/II.png"
@@ -9,6 +8,9 @@ import erp from "../assets/erp.jpg"
 export default function ProjectsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const carouselContainerRef = useRef(null)
 
   const projects = [
     {
@@ -72,8 +74,27 @@ export default function ProjectsSection() {
     }
   }, [currentIndex])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    if (headerRef.current) observer.observe(headerRef.current)
+    if (carouselContainerRef.current) observer.observe(carouselContainerRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="projectS" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20">
+    <section ref={sectionRef} id="projectS" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in">
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>
@@ -83,7 +104,7 @@ export default function ProjectsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div ref={headerRef} className="text-center mb-12 sm:mb-16 animate-slide-up">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             Our <span className="text-[#5BC0F8]">Projects</span>
           </h2>
@@ -94,11 +115,11 @@ export default function ProjectsSection() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div ref={carouselContainerRef} className="relative animate-slide-up-delay">
           {/* Navigation Arrows - Distinct Style */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block animate-fade-in-delay-2"
             aria-label="Previous project"
           >
             <svg
@@ -113,7 +134,7 @@ export default function ProjectsSection() {
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block animate-fade-in-delay-2"
             aria-label="Next project"
           >
             <svg
@@ -138,7 +159,7 @@ export default function ProjectsSection() {
                 className="flex-shrink-0 w-full md:w-[calc(50%-1rem)]" // 1 card on mobile, 2 on medium/large
               >
                 <div
-                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col ${
+                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col animate-fade-in-delay-${index + 3} ${
                     index === currentIndex || (index === currentIndex + 1 && window.innerWidth >= 768)
                       ? "border-[#5BC0F8] shadow-2xl" // Highlight active and next card on larger screens
                       : ""
@@ -177,7 +198,7 @@ export default function ProjectsSection() {
           </div>
 
           {/* Carousel Dots - Distinct Style (Line Indicators) */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-8 space-x-2 animate-fade-in-delay-7">
             {projects.map((_, index) => (
               <button
                 key={index}
@@ -223,6 +244,71 @@ export default function ProjectsSection() {
         .scrollbar-hide {
           -ms-overflow-style: none; /* IE and Edge */
           scrollbar-width: none; /* Firefox */
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-slide-up {
+          animation: slideUp 1s ease-out forwards;
+        }
+        
+        .animate-slide-up-delay {
+          animation: slideUp 1s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.8s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-3 {
+          animation: fadeIn 0.8s ease-out 0.5s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-4 {
+          animation: fadeIn 0.8s ease-out 0.6s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-5 {
+          animation: fadeIn 0.8s ease-out 0.7s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-6 {
+          animation: fadeIn 0.8s ease-out 0.8s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-7 {
+          animation: fadeIn 0.8s ease-out 0.9s forwards;
+          opacity: 0;
         }
       `}</style>
     </section>

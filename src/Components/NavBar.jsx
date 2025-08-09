@@ -1,11 +1,14 @@
 import React from 'react';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Logo from "../assets/logo.jpg"
 
 export default function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const navRef = useRef(null)
+  const logoRef = useRef(null)
+  const menuRef = useRef(null)
 
   const toggleMenu = () => {
     if (!isAnimating) {
@@ -62,6 +65,26 @@ export default function Menubar() {
     }
   }, [])
 
+  // Animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (navRef.current) observer.observe(navRef.current)
+    if (logoRef.current) observer.observe(logoRef.current)
+    if (menuRef.current) observer.observe(menuRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
@@ -84,11 +107,11 @@ export default function Menubar() {
   ]
 
   return (
-    <nav className="bg-[#1A2F55] shadow-lg sticky top-0 z-50">
+    <nav ref={navRef} className="bg-[#1A2F55] shadow-lg sticky top-0 z-50 animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div ref={logoRef} className="flex-shrink-0 animate-slide-up">
             <button 
               onClick={() => scrollToSection('home')}
               className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
@@ -98,13 +121,13 @@ export default function Menubar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
+          <div ref={menuRef} className="hidden md:block animate-slide-up-delay">
             <div className="ml-10 flex items-baseline space-x-8">
-              {menuItems.map((item) => (
+              {menuItems.map((item, index) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md poppins-medium ${
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md poppins-medium animate-fade-in-delay-${index + 1} ${
                     activeSection === item.href
                       ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
                       : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
@@ -117,7 +140,7 @@ export default function Menubar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden animate-slide-up-delay">
             <button
               onClick={toggleMenu}
               className="text-white hover:text-[#5BC0F8] focus:outline-none focus:text-[#5BC0F8] p-2"
@@ -198,6 +221,77 @@ export default function Menubar() {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-up {
+          animation: slideUp 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-up-delay {
+          animation: slideUp 0.8s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-1 {
+          animation: fadeIn 0.6s ease-out 0.3s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.6s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-3 {
+          animation: fadeIn 0.6s ease-out 0.5s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-4 {
+          animation: fadeIn 0.6s ease-out 0.6s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-5 {
+          animation: fadeIn 0.6s ease-out 0.7s forwards;
+          opacity: 0;
+        }
+      `}</style>
     </nav>
   )
 }

@@ -1,13 +1,36 @@
-import React from "react"
-import { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import aboutImage from "../assets/about.png"
 
 export default function WhyUsSection() {
   const [openItem, setOpenItem] = useState(1) // Start with 'Experiences' (id 1) open
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const accordionRef = useRef(null)
+  const imageRef = useRef(null)
 
   const toggleItem = (id) => {
     setOpenItem(openItem === id ? null : id)
   }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    if (headerRef.current) observer.observe(headerRef.current)
+    if (accordionRef.current) observer.observe(accordionRef.current)
+    if (imageRef.current) observer.observe(imageRef.current)
+
+    return () => observer.disconnect()
+  }, [])
 
   const whyUsItems = [
     {
@@ -43,7 +66,7 @@ export default function WhyUsSection() {
   ]
 
   return (
-    <section id="about" className="relative py-10 sm:py-20 bg-[#F5F9FF] overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-10 sm:py-20 bg-[#F5F9FF] overflow-hidden animate-fade-in">
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>
@@ -52,7 +75,7 @@ export default function WhyUsSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 sm:mb-8">
+        <div ref={headerRef} className="text-center mb-8 sm:mb-8 animate-slide-up">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] poppins-bold">
             Why <span className="text-[#5BC0F8]">Choose Us?</span>
           </h2>
@@ -63,11 +86,11 @@ export default function WhyUsSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content - Accordion */}
-          <div className="space-y-4">
-            {whyUsItems.map((item) => (
+          <div ref={accordionRef} className="space-y-4 animate-slide-up-delay">
+            {whyUsItems.map((item, index) => (
               <div
                 key={item.id}
-                className={`rounded-xl shadow-lg overflow-hidden transition-all duration-500 ${
+                className={`rounded-xl shadow-lg overflow-hidden transition-all duration-500 animate-fade-in-delay-${index + 1} ${
                   openItem === item.id
                     ? "bg-gradient-to-br from-white to-[#F5F9FF] border border-[#5BC0F8]/30"
                     : "bg-white border border-gray-100 hover:shadow-xl"
@@ -120,7 +143,7 @@ export default function WhyUsSection() {
           </div>
 
                      {/* Right Content - Illustration */}
-           <div className="w-full h-64 sm:h-80 md:h-96 relative overflow-hidden rounded-3xl shadow-2xl shadow-[#1A2F55]/20 transform hover:scale-105 transition-transform duration-500">
+           <div ref={imageRef} className="w-full h-64 sm:h-80 md:h-96 relative overflow-hidden rounded-3xl shadow-2xl shadow-[#1A2F55]/20 transform hover:scale-105 transition-transform duration-500 animate-slide-up-delay-2">
              <img
                src={aboutImage}
                alt="iDaptive Data Fusion System Illustration"
@@ -168,6 +191,56 @@ export default function WhyUsSection() {
         }
         .animate-fade-in {
           animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-slide-up {
+          animation: slideUp 1s ease-out forwards;
+        }
+        
+        .animate-slide-up-delay {
+          animation: slideUp 1s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-slide-up-delay-2 {
+          animation: slideUp 1s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-1 {
+          animation: fadeIn 0.8s ease-out 0.1s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-2 {
+          animation: fadeIn 0.8s ease-out 0.2s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-3 {
+          animation: fadeIn 0.8s ease-out 0.3s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-4 {
+          animation: fadeIn 0.8s ease-out 0.4s forwards;
+          opacity: 0;
+        }
+        
+        .animate-fade-in-delay-5 {
+          animation: fadeIn 0.8s ease-out 0.5s forwards;
+          opacity: 0;
         }
       `}</style>
     </section>
