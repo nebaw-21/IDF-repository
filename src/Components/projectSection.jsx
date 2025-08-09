@@ -80,10 +80,10 @@ export default function ProjectsSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             Our <span className="text-[#5BC0F8]">Projects</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
             Below are some of our notable products and projects. We have successfully developed and delivered multiple
             large-scale engagements currently serving our clients as well as users.
           </p>
@@ -149,10 +149,10 @@ export default function ProjectsSection() {
                       />
                     </div>
                     <div className="ml-6 flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-bold text-[#1A2F55] mb-2 leading-tight">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-2 leading-tight poppins-bold">
                         {project.title}
                       </h3>
-                      <p className="text-gray-600 text-base sm:text-lg">{project.description}</p>
+                      <p className="text-gray-600 text-sm sm:text-base poppins-regular">{project.description}</p>
                     </div>
                   </div>
                   <div className="mt-auto flex justify-end">
@@ -160,7 +160,7 @@ export default function ProjectsSection() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-[#5BC0F8] hover:text-[#FFA500] font-semibold transition-colors duration-200"
+                      className="inline-flex items-center text-[#5BC0F8] hover:text-[#FFA500] font-semibold transition-colors duration-200 poppins-semibold"
                       aria-label={`Learn more about ${project.title}`}
                     >
                       View Project

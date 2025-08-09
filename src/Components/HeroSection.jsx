@@ -23,13 +23,13 @@ export default function HeroSection() {
           {/* Left Content */}
           <div className="text-center lg:text-left order-2 lg:order-1 px-2 sm:px-0">
             {/* Company Badge */}
-            <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-[#5BC0F8]/20 border border-[#5BC0F8]/30 rounded-full text-[#5BC0F8] text-xs sm:text-sm font-medium mb-3 sm:mb-6 backdrop-blur-sm">
+            <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-[#5BC0F8]/20 border border-[#5BC0F8]/30 rounded-full text-[#5BC0F8] text-xs sm:text-sm font-medium mb-3 sm:mb-6 backdrop-blur-sm poppins-medium">
               <span className="w-2 h-2 bg-[#FFA500] rounded-full mr-2 animate-pulse"></span>
               Innovating for a Better Tomorrow
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-6 leading-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-6 leading-tight poppins-bold">
               <span className="block">We are building</span>
               <span className="block text-[#5BC0F8]">a better tomorrow</span>
             </h1>
@@ -39,31 +39,31 @@ export default function HeroSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3 gap-2 sm:gap-4">
                 <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#5BC0F8]/20 hover:bg-white/10 transition-all duration-300">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#5BC0F8] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm sm:text-base">15+</span>
+                    <span className="text-white font-bold text-sm sm:text-base poppins-bold">15+</span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-white font-medium text-sm sm:text-base">Years Experience</p>
-                    <p className="text-gray-300 text-xs sm:text-sm">Industry Leadership</p>
+                    <p className="text-white font-medium text-sm sm:text-base poppins-medium">Years Experience</p>
+                    <p className="text-gray-300 text-xs sm:text-sm poppins-regular">Industry Leadership</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#FFA500]/20 hover:bg-white/10 transition-all duration-300">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#FFA500] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm sm:text-base">🚀</span>
+                    <span className="text-white font-bold text-sm sm:text-base poppins-bold">🚀</span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-white font-medium text-sm sm:text-base">Digital Innovation</p>
-                    <p className="text-gray-300 text-xs sm:text-sm">Cutting-edge Solutions</p>
+                    <p className="text-white font-medium text-sm sm:text-base poppins-medium">Digital Innovation</p>
+                    <p className="text-gray-300 text-xs sm:text-sm poppins-regular">Cutting-edge Solutions</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#5BC0F8]/20 hover:bg-white/10 transition-all duration-300 sm:col-span-2 lg:col-span-1">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#5BC0F8] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm sm:text-base">🏆</span>
+                    <span className="text-white font-bold text-sm sm:text-base poppins-bold">🏆</span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-white font-medium text-sm sm:text-base">Trusted Partner</p>
-                    <p className="text-gray-300 text-xs sm:text-sm">Public & Private Sectors</p>
+                    <p className="text-white font-medium text-sm sm:text-base poppins-medium">Trusted Partner</p>
+                    <p className="text-gray-300 text-xs sm:text-sm poppins-regular">Public & Private Sectors</p>
                   </div>
                 </div>
               </div>
@@ -71,10 +71,10 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-6 sm:mb-12">
-              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#FFA500] to-[#FF8C00] text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-[#FFA500]/25 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#FFA500] to-[#FF8C00] text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-[#FFA500]/25 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base poppins-semibold">
                 Start Your Digital Journey
               </button>
-              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-[#5BC0F8] text-[#5BC0F8] font-bold rounded-lg hover:bg-[#5BC0F8] hover:text-[#1A2F55] transition-all duration-300 text-sm sm:text-base">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-[#5BC0F8] text-[#5BC0F8] font-bold rounded-lg hover:bg-[#5BC0F8] hover:text-[#1A2F55] transition-all duration-300 text-sm sm:text-base poppins-semibold">
                 Explore Our Solutions
               </button>
             </div>
@@ -92,13 +92,13 @@ export default function HeroSection() {
                   <div className="bg-gradient-to-br from-[#5BC0F8] to-[#1A2F55] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
                     <div className="text-center">
                       <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🔧</div>
-                      <div className="text-white text-xs sm:text-sm font-medium">System Development</div>
+                      <div className="text-white text-xs sm:text-sm font-medium poppins-medium">System Development</div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-[#FFA500] to-[#FF8C00] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse delay-500">
                     <div className="text-center">
                       <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">📊</div>
-                      <div className="text-white text-xs sm:text-sm font-medium">Data Analytics</div>
+                      <div className="text-white text-xs sm:text-sm font-medium poppins-medium">Data Analytics</div>
                     </div>
                   </div>
                 </div>
@@ -107,9 +107,9 @@ export default function HeroSection() {
                 <div className="col-span-1 flex flex-col justify-center">
                   <div className="bg-gradient-to-br from-[#1A2F55] to-[#0F1B3C] p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl shadow-2xl border-2 border-[#5BC0F8]/30">
                     <div className="text-center">
-                      <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#5BC0F8] mb-1 sm:mb-2">iDF</div>
-                      <div className="text-xs text-gray-300">Data Fusion</div>
-                      <div className="text-xs text-gray-300">System PLC</div>
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#5BC0F8] mb-1 sm:mb-2 poppins-bold">iDF</div>
+                      <div className="text-xs text-gray-300 poppins-regular">Data Fusion</div>
+                      <div className="text-xs text-gray-300 poppins-regular">System PLC</div>
                       <div className="mt-2 sm:mt-3 w-full h-0.5 sm:h-1 bg-gradient-to-r from-[#5BC0F8] to-[#FFA500] rounded-full"></div>
                     </div>
                   </div>
@@ -120,13 +120,13 @@ export default function HeroSection() {
                   <div className="bg-gradient-to-br from-[#5BC0F8] to-[#1A2F55] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse delay-1000">
                     <div className="text-center">
                       <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🤖</div>
-                      <div className="text-white text-xs sm:text-sm font-medium">AI Solutions</div>
+                      <div className="text-white text-xs sm:text-sm font-medium poppins-medium">AI Solutions</div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-[#FFA500] to-[#FF8C00] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
                     <div className="text-center">
                       <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🏢</div>
-                      <div className="text-white text-xs sm:text-sm font-medium">ERP Systems</div>
+                      <div className="text-white text-xs sm:text-sm font-medium poppins-medium">ERP Systems</div>
                     </div>
                   </div>
                 </div>
@@ -137,13 +137,13 @@ export default function HeroSection() {
                 <div className="bg-white/10 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-[#5BC0F8]/20 hover:bg-[#5BC0F8]/10 transition-all duration-300">
                   <div className="text-center">
                     <div className="text-sm sm:text-base md:text-lg mb-1">🎓</div>
-                    <div className="text-white text-xs font-medium">LMS Development</div>
+                    <div className="text-white text-xs font-medium poppins-medium">LMS Development</div>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-[#FFA500]/20 hover:bg-[#FFA500]/10 transition-all duration-300">
                   <div className="text-center">
                     <div className="text-sm sm:text-base md:text-lg mb-1">🔍</div>
-                    <div className="text-white text-xs font-medium">Quality Assurance</div>
+                    <div className="text-white text-xs font-medium poppins-medium">Quality Assurance</div>
                   </div>
                 </div>
               </div>

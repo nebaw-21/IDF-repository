@@ -76,10 +76,10 @@ export default function CoreValuesSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             Our <span className="text-[#FFA500]">Core Values</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
             The principles that guide our actions and define our commitment to excellence.
           </p>
         </div>
@@ -140,8 +140,8 @@ export default function CoreValuesSection() {
                   >
                     <span className="text-4xl sm:text-5xl">{value.icon}</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#1A2F55] mb-3">{value.title}</h3>
-                  <p className="text-gray-600 text-base sm:text-lg flex-grow">{value.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-3 poppins-bold">{value.title}</h3>
+                  <p className="text-gray-600 text-sm sm:text-base flex-grow poppins-regular">{value.description}</p>
                 </div>
               </div>
             ))}

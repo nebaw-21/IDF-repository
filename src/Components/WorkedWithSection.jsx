@@ -16,7 +16,7 @@ export default function WorkedWithSection() {
     <section id="worked-with" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20">
       {/* Section Header */}
       <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55] mb-4">WE WORKED WITH</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">WE WORKED WITH</h2>
         <div className="w-20 h-1 bg-[#5BC0F8] mx-auto rounded-full"></div> {/* Blue underline */}
       </div>
 

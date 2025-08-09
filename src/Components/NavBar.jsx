@@ -40,7 +40,7 @@ export default function Menubar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors">
+            <a href="#" className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold">
               YourLogo
             </a>
           </div>
@@ -52,7 +52,7 @@ export default function Menubar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-[#5BC0F8] px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-[#5BC0F8]/10 rounded-md"
+                  className="text-white hover:text-[#5BC0F8] px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-[#5BC0F8]/10 rounded-md poppins-medium"
                 >
                   {item.name}
                 </a>
@@ -125,7 +125,7 @@ export default function Menubar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-white hover:text-[#5BC0F8] block px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300 transform hover:translate-x-2"
+                    className="text-white hover:text-[#5BC0F8] block px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium"
                     onClick={() => setIsMenuOpen(false)}
                     style={{ 
                       animation: `slideInRight 0.3s ease-out ${index * 0.1}s both`

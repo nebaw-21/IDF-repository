@@ -94,10 +94,10 @@ export default function ServicesSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             Our <span className="text-[#5BC0F8]">Cutting-Edge Services</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
             Delivering innovative IT solutions tailored to your dynamic needs.
           </p>
         </div>
@@ -154,8 +154,8 @@ export default function ServicesSection() {
                   <div className="flex items-center justify-center w-16 h-16 bg-[#5BC0F8]/10 rounded-full mx-auto mb-6">
                     <span className="text-4xl">{service.icon}</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#1A2F55] text-center mb-3">{service.title}</h3>
-                  <p className="text-gray-600 text-base sm:text-lg text-center">{service.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] text-center mb-3 poppins-bold">{service.title}</h3>
+                  <p className="text-gray-600 text-sm sm:text-base text-center poppins-regular">{service.description}</p>
                 </div>
               </div>
             ))}

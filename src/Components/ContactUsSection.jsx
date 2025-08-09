@@ -15,10 +15,10 @@ export default function ContactSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
             GET <span className="text-[#5BC0F8]">IN TOUCH</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
             We'd love to hear from you. Reach out to us through any of the channels below.
           </p>
           <div className="w-20 h-1 bg-[#5BC0F8] mx-auto rounded-full mt-4"></div> {/* Blue underline */}
@@ -27,7 +27,7 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content - Contact Information Card */}
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 transform hover:shadow-2xl transition-all duration-300">
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#1A2F55] mb-8 pb-4 border-b border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#1A2F55] mb-8 pb-4 border-b border-gray-200 poppins-bold">
               Connect with Our Team
             </h3>
             <div className="space-y-6 pt-4">
@@ -37,8 +37,8 @@ export default function ContactSection() {
                   <MapPin className="w-7 h-7 text-[#5BC0F8] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
-                  <h4 className="text-xl sm:text-2xl font-semibold text-[#1A2F55] mb-1">Our Location</h4>
-                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                  <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Our Location</h4>
+                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed poppins-regular">
                     Jomo Kenyatta Avenue, Mekane Iyesus Building, House No 227B Office No 204
                   </p>
                 </div>
@@ -50,10 +50,10 @@ export default function ContactSection() {
                   <Mail className="w-7 h-7 text-[#FFA500] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
-                  <h4 className="text-xl sm:text-2xl font-semibold text-[#1A2F55] mb-1">Email Us</h4>
+                  <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Email Us</h4>
                   <a
                     href="mailto:idfeth@gmail.com"
-                    className="text-gray-700 text-base sm:text-lg hover:text-[#5BC0F8] transition-colors duration-200 font-medium"
+                    className="text-gray-700 text-sm sm:text-base hover:text-[#5BC0F8] transition-colors duration-200 font-medium poppins-medium"
                   >
                     idfeth@gmail.com
                   </a>
@@ -66,10 +66,10 @@ export default function ContactSection() {
                   <Phone className="w-7 h-7 text-[#5BC0F8] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
-                  <h4 className="text-xl sm:text-2xl font-semibold text-[#1A2F55] mb-1">Call Us</h4>
+                  <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Call Us</h4>
                   <a
                     href="tel:+251911630791"
-                    className="text-gray-700 text-base sm:text-lg hover:text-[#FFA500] transition-colors duration-200 font-medium"
+                    className="text-gray-700 text-sm sm:text-base hover:text-[#FFA500] transition-colors duration-200 font-medium poppins-medium"
                   >
                     +251 911 630791
                   </a>

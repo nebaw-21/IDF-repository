@@ -53,10 +53,10 @@ export default function WhyUsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] poppins-bold">
             Why <span className="text-[#5BC0F8]">Choose Us?</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mt-4">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mt-4 poppins-regular">
             Our commitment to excellence, innovation, and client success sets us apart.
           </p>
         </div>
@@ -81,14 +81,14 @@ export default function WhyUsSection() {
                 >
                   <span className="flex items-center">
                     <span
-                      className={`text-xl sm:text-2xl font-bold mr-4 transition-colors duration-300 ${
+                      className={`text-lg sm:text-xl font-bold mr-4 transition-colors duration-300 poppins-bold ${
                         openItem === item.id ? "text-[#5BC0F8]" : "text-gray-400"
                       }`}
                     >
                       {String(item.id).padStart(2, "0")}
                     </span>
                     <span
-                      className={`text-lg sm:text-xl font-semibold transition-colors duration-300 ${
+                      className={`text-base sm:text-lg font-semibold transition-colors duration-300 poppins-semibold ${
                         openItem === item.id ? "text-[#1A2F55]" : "text-gray-700"
                       }`}
                     >
@@ -110,7 +110,7 @@ export default function WhyUsSection() {
                 {openItem === item.id && (
                   <div
                     id={`content-${item.id}`}
-                    className="px-5 sm:px-6 pb-5 sm:pb-6 text-gray-600 text-base sm:text-lg leading-relaxed animate-fade-in"
+                    className="px-5 sm:px-6 pb-5 sm:pb-6 text-gray-600 text-sm sm:text-base leading-relaxed animate-fade-in poppins-regular"
                   >
                     {item.description}
                   </div>
