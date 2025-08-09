@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../src/Components/NavBar"
 import HeroSection from "../src/Components/HeroSection";
+import Footer from "../src/Components/FooterSection";
 
 function HomePage() {
    
@@ -9,6 +10,7 @@ function HomePage() {
 <Navbar/>
  <HeroSection/>
  <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+ <Footer/>
     </>
   );
 }
