@@ -52,7 +52,7 @@ export default function WhyUsSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A2F55]">
             Why <span className="text-[#5BC0F8]">Choose Us?</span>
           </h2>

@@ -3,6 +3,7 @@ import Navbar from "../src/Components/NavBar"
 import HeroSection from "../src/Components/HeroSection";
 import Footer from "../src/Components/FooterSection";
 import AboutSection from "../src/Components/AboutSection";
+import ServiceSection from "../src/Components/ServiceSection";
 
 function HomePage() {
    
@@ -11,6 +12,7 @@ function HomePage() {
 <Navbar/>
  <HeroSection/>
  <AboutSection/>
+ <ServiceSection/>
  <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
  <Footer/>
     </>
