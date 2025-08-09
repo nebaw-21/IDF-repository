@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 export default function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   const toggleMenu = () => {
     if (!isAnimating) {
@@ -12,6 +13,53 @@ export default function Menubar() {
       setTimeout(() => setIsAnimating(false), 300)
     }
   }
+
+  // Smooth scroll function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+    setIsMenuOpen(false) // Close mobile menu after clicking
+  }
+
+  // Intersection Observer to track active section
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -80% 0px', // Adjust these values to control when a section is considered "active"
+      threshold: 0
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }, observerOptions)
+
+    // Observe all sections
+    const sections = ['home', 'about', 'services', 'projectS', 'contact']
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => {
+      sections.forEach(sectionId => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          observer.unobserve(element)
+        }
+      })
+    }
+  }, [])
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -27,11 +75,11 @@ export default function Menubar() {
   }, [isMenuOpen])
 
   const menuItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: 'home' },
+    { name: 'About', href: 'about' },
+    { name: 'Services', href: 'services' },
+    { name: 'Projects', href: 'projectS' },
+    { name: 'Contact', href: 'contact' }
   ]
 
   return (
@@ -40,22 +88,29 @@ export default function Menubar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold">
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
+            >
               YourLogo
-            </a>
+            </button>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {menuItems.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-[#5BC0F8] px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-[#5BC0F8]/10 rounded-md poppins-medium"
+                  onClick={() => scrollToSection(item.href)}
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md poppins-medium ${
+                    activeSection === item.href
+                      ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
+                      : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
+                  }`}
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -122,17 +177,20 @@ export default function Menubar() {
 
               <div className="px-4 pt-12 pb-8 space-y-2">
                 {menuItems.map((item, index) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="text-white hover:text-[#5BC0F8] block px-4 py-3 text-base font-medium hover:bg-[#5BC0F8]/10 rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium ${
+                      activeSection === item.href
+                        ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
+                        : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
+                    }`}
                     style={{ 
                       animation: `slideInRight 0.3s ease-out ${index * 0.1}s both`
                     }}
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>

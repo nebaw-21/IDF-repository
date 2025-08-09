@@ -2,7 +2,7 @@ import React from "react"
 export default function WorkedWithSection() {
   const partnerLogos = [
     { src: "/public/images/industry-info-logo.png", alt: "Industry Information System Logo" },
-    { src: "/public/images/eccsa-logo.png", alt: "Ethiopian Chamber of Commerce Logo" },
+    { src: "../assets/Ethiopian Chamber of Commerce and Sectoral Association.png", alt: "Ethiopian Chamber of Commerce Logo" },
     { src: "/public/images/icap-logo-bw.png", alt: "ICAP Global Health Logo" },
     { src: "/public/images/mit-logo-bw.png", alt: "MIT Logo" },
     // Duplicate logos to create a seamless loop

@@ -43,7 +43,7 @@ export default function WhyUsSection() {
   ]
 
   return (
-    <section id="why-us" className="relative py-10 sm:py-20 bg-[#F5F9FF] overflow-hidden">
+    <section id="about" className="relative py-10 sm:py-20 bg-[#F5F9FF] overflow-hidden">
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>

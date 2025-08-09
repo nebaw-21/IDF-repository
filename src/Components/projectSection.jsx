@@ -69,7 +69,7 @@ export default function ProjectsSection() {
   }, [currentIndex])
 
   return (
-    <section id="projects" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20">
+    <section id="projectS" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20">
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>

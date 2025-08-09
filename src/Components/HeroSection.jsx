@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HeroSection() {
   return (
-    <div className="relative md:-mt-30 min-h-screen bg-gradient-to-br from-[#1A2F55] via-[#1A2F55] to-[#0F1B3C] overflow-hidden">
+    <div id="home" className="relative md:-mt-30 min-h-screen bg-gradient-to-br from-[#1A2F55] via-[#1A2F55] to-[#0F1B3C] overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-6 sm:top-10 left-2 sm:left-6 w-24 sm:w-40 md:w-72 h-24 sm:h-40 md:h-72 bg-[#5BC0F8]/10 rounded-full blur-xl sm:blur-2xl animate-pulse"></div>
