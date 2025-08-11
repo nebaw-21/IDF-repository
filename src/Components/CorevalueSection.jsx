@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react"
 import { coreValues } from "../Data/coreValues"
+import { 
+  TrendingUp, 
+  Handshake, 
+  Smile, 
+  Lightbulb, 
+  Target 
+} from "lucide-react"
 
 export default function CoreValuesSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -11,6 +18,20 @@ export default function CoreValuesSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
+
+  // Function to render the appropriate icon component
+  const renderIcon = (iconName) => {
+    const iconMap = {
+      TrendingUp: TrendingUp,
+      Handshake: Handshake,
+      Smile: Smile,
+      Lightbulb: Lightbulb,
+      Target: Target,
+    }
+    
+    const IconComponent = iconMap[iconName]
+    return IconComponent ? <IconComponent className="w-10 h-10 text-[#1A2F55]" /> : null
+  }
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length)
@@ -170,7 +191,7 @@ export default function CoreValuesSection() {
                       index % 2 === 0 ? "bg-[#5BC0F8]/10" : "bg-[#FFA500]/10" // Alternating icon background
                     }`}
                   >
-                    <span className="text-4xl sm:text-5xl">{value.icon}</span>
+                    {renderIcon(value.icon)}
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-3 poppins-bold">{value.title}</h3>
                   <p className="text-gray-600 text-sm sm:text-base flex-grow poppins-regular">{value.description}</p>

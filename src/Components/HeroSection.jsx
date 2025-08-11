@@ -1,4 +1,14 @@
 import React, { useEffect, useRef } from 'react'
+import { 
+  Rocket, 
+  Trophy, 
+  Wrench, 
+  BarChart3, 
+  Bot, 
+  Building2, 
+  GraduationCap, 
+  Search 
+} from "lucide-react"
 
 export default function HeroSection() {
   const heroRef = useRef(null)
@@ -68,7 +78,7 @@ export default function HeroSection() {
                 
                 <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#FFA500]/20 hover:bg-white/10 transition-all duration-300 animate-fade-in-delay-4">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#FFA500] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm sm:text-base poppins-bold">🚀</span>
+                    <Rocket className="w-5 h-5 text-white" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-white font-medium text-sm sm:text-base poppins-medium">Digital Innovation</p>
@@ -78,7 +88,7 @@ export default function HeroSection() {
                 
                 <div className="hidden sm:flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#5BC0F8]/20 hover:bg-white/10 transition-all duration-300 sm:col-span-2 lg:col-span-1 animate-fade-in-delay-5">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#5BC0F8] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm sm:text-base poppins-bold">🏆</span>
+                    <Trophy className="w-5 h-5 text-white" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-white font-medium text-sm sm:text-base poppins-medium">Trusted Partner</p>
@@ -110,13 +120,13 @@ export default function HeroSection() {
                 <div className="hidden md:block col-span-1 space-y-3 sm:space-y-4">
                   <div className="bg-gradient-to-br from-[#5BC0F8] to-[#1A2F55] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-fade-in-delay-2">
                     <div className="text-center">
-                      <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🔧</div>
+                      <Wrench className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white mx-auto mb-1 sm:mb-2" />
                       <div className="text-white text-xs sm:text-sm font-medium poppins-medium">System Development</div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-[#FFA500] to-[#FF8C00] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse delay-500 animate-fade-in-delay-3">
                     <div className="text-center">
-                      <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">📊</div>
+                      <BarChart3 className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white mx-auto mb-1 sm:mb-2" />
                       <div className="text-white text-xs sm:text-sm font-medium poppins-medium">Data Analytics</div>
                     </div>
                   </div>
@@ -138,13 +148,13 @@ export default function HeroSection() {
                 <div className="hidden md:block col-span-1 space-y-3 sm:space-y-4">
                   <div className="bg-gradient-to-br from-[#5BC0F8] to-[#1A2F55] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-pulse delay-1000 animate-fade-in-delay-5">
                     <div className="text-center">
-                      <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🤖</div>
+                      <Bot className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white mx-auto mb-1 sm:mb-2" />
                       <div className="text-white text-xs sm:text-sm font-medium poppins-medium">AI Solutions</div>
                     </div>
                   </div>
                   <div className="bg-gradient-to-br from-[#FFA500] to-[#FF8C00] p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 animate-fade-in-delay-6">
                     <div className="text-center">
-                      <div className="text-lg sm:text-xl md:text-2xl mb-1 sm:mb-2">🏢</div>
+                      <Building2 className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white mx-auto mb-1 sm:mb-2" />
                       <div className="text-white text-xs sm:text-sm font-medium poppins-medium">ERP Systems</div>
                     </div>
                   </div>
@@ -155,13 +165,13 @@ export default function HeroSection() {
               <div className="hidden md:grid grid-cols-2 gap-1 sm:gap-3 md:gap-4 mt-3 sm:mt-6 px-2 sm:px-6 md:px-8">
                 <div className="bg-white/10 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-[#5BC0F8]/20 hover:bg-[#5BC0F8]/10 transition-all duration-300 animate-fade-in-delay-7">
                   <div className="text-center">
-                    <div className="text-sm sm:text-base md:text-lg mb-1">🎓</div>
+                    <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white mx-auto mb-1" />
                     <div className="text-white text-xs font-medium poppins-medium">LMS Development</div>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm p-2 sm:p-3 rounded-lg border border-[#FFA500]/20 hover:bg-[#FFA500]/10 transition-all duration-300 animate-fade-in-delay-8">
                   <div className="text-center">
-                    <div className="text-sm sm:text-base md:text-lg mb-1">🔍</div>
+                    <Search className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white mx-auto mb-1" />
                     <div className="text-white text-xs font-medium poppins-medium">Quality Assurance</div>
                   </div>
                 </div>

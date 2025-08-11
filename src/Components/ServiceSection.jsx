@@ -1,6 +1,16 @@
 import { useState, useRef, useEffect } from "react"
 import React from "react"
 import { services } from "../Data/services"
+import { 
+  Code2, 
+  BarChart3, 
+  Users, 
+  CheckCircle, 
+  Building2, 
+  GraduationCap, 
+  Brain, 
+  Database 
+} from "lucide-react"
 
 export default function ServicesSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -12,6 +22,23 @@ export default function ServicesSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
+
+  // Function to render the appropriate icon component
+  const renderIcon = (iconName) => {
+    const iconMap = {
+      Code2: Code2,
+      BarChart3: BarChart3,
+      Users: Users,
+      CheckCircle: CheckCircle,
+      Building2: Building2,
+      GraduationCap: GraduationCap,
+      Brain: Brain,
+      Database: Database,
+    }
+    
+    const IconComponent = iconMap[iconName]
+    return IconComponent ? <IconComponent className="w-8 h-8 text-[#5BC0F8]" /> : null
+  }
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
@@ -172,7 +199,7 @@ export default function ServicesSection() {
                   }`}
                 >
                   <div className="flex items-center justify-center w-16 h-16 bg-[#5BC0F8]/10 rounded-full mx-auto mb-6">
-                    <span className="text-4xl">{service.icon}</span>
+                    {renderIcon(service.icon)}
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] text-center mb-3 poppins-bold">{service.title}</h3>
                   <p className="text-gray-600 text-sm sm:text-base text-center poppins-regular">{service.description}</p>
