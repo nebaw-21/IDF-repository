@@ -1,26 +1,10 @@
 import React, { useEffect, useRef } from "react"
-import ECC from "../assets/ECC.png"
-import II from "../assets/II.png"
-import EMI from "../assets/EMI.png"
-import mit from "../assets/mit.png"
-import icap from "../assets/icap.svg"
+import { partnerLogos } from "../Data/partners"
 
 export default function WorkedWithSection() {
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const carouselRef = useRef(null)
-
-  const partnerLogos = [
-    { src: EMI, alt: "EMI Logo" },
-    { src: ECC, alt: "Ethiopian Chamber of Commerce Logo" },
-    { src: icap, alt: "ICAP Global Health Logo" },
-    { src: mit, alt: "MIT Logo" },
-    // Duplicate logos to create a seamless loop
-    { src: II, alt: "Industry Information System Logo" },
-    { src: ECC, alt: "Ethiopian Chamber of Commerce Logo" },
-    { src: icap, alt: "ICAP Global Health Logo" },
-    { src: mit, alt: "MIT Logo" },
-  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import { navLinks, contactInfo, companyInfo } from "../Data/navigation";
+
 export default function Footer() {
     const currentYear = new Date().getFullYear()
     const footerRef = useRef(null)
@@ -6,14 +8,6 @@ export default function Footer() {
     const quickLinksRef = useRef(null)
     const contactInfoRef = useRef(null)
     const copyrightRef = useRef(null)
-  
-    const navLinks = [
-      { name: "Home", href: "#home" },
-      { name: "About", href: "#about" },
-      { name: "Services", href: "#services" },
-      { name: "Portfolio", href: "#portfolio" },
-      { name: "Contact", href: "#contact" },
-    ]
 
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -42,9 +36,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 text-center md:text-left">
             {/* Company Info */}
             <div ref={companyInfoRef} className="col-span-1 animate-slide-up-delay">
-              <h3 className="text-2xl font-bold text-white mb-2 poppins-bold">YourLogo</h3>
-              <p className="text-gray-300 text-sm mb-2 poppins-regular">iDaptive Data Fusion System PLC</p>
-              <p className="text-[#5BC0F8] text-sm font-semibold poppins-semibold">Innovating for a Better Tomorrow</p>
+              <h3 className="text-2xl font-bold text-white mb-2 poppins-bold">{companyInfo.logo}</h3>
+              <p className="text-gray-300 text-sm mb-2 poppins-regular">{companyInfo.name}</p>
+              <p className="text-[#5BC0F8] text-sm font-semibold poppins-semibold">{companyInfo.tagline}</p>
             </div>
   
             {/* Quick Links & Contact Info */}
@@ -66,17 +60,17 @@ export default function Footer() {
               <h4 className="text-lg font-semibold text-white mb-3 poppins-semibold">Get in Touch</h4>
               <ul className="space-y-1 text-gray-300 text-sm mb-4">
                 <li className="animate-fade-in-delay-4">
-                  <a href="mailto:idfeth@gmail.com" className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
-                    Email: idfeth@gmail.com
+                  <a href={`mailto:${contactInfo.email}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
+                    Email: {contactInfo.email}
                   </a>
                 </li>
                 <li className="animate-fade-in-delay-5">
-                  <a href="tel:+251911630791" className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
-                    Phone: +251911630791
+                  <a href={`tel:${contactInfo.phone}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
+                    Phone: {contactInfo.phone}
                   </a>
                 </li>
                 <li className="poppins-regular animate-fade-in-delay-6">
-                  Address: Jomo Kenyatta Avenue, <br /> Mekane Iyesus Building, House No 227B Office No 204
+                  Address: {contactInfo.address}
                 </li>
               </ul>
 
@@ -85,7 +79,7 @@ export default function Footer() {
   
           {/* Copyright */}
           <div ref={copyrightRef} className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-xs poppins-regular animate-fade-in-delay-7">
-            &copy; {currentYear} iDaptive Data Fusion System PLC. All rights reserved.
+            &copy; {currentYear} {companyInfo.name}. All rights reserved.
           </div>
         </div>
 
