@@ -7,6 +7,10 @@ export default function CoreValuesSection() {
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const carouselContainerRef = useRef(null)
+  const isTouchingRef = useRef(false)
+  const touchStartXRef = useRef(0)
+  const touchDeltaXRef = useRef(0)
+  const autoPlayRef = useRef(null)
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length)
@@ -18,6 +22,32 @@ export default function CoreValuesSection() {
 
   const goToSlide = (index) => {
     setCurrentIndex(index)
+  }
+
+  const handleTouchStart = (e) => {
+    isTouchingRef.current = true
+    touchStartXRef.current = e.touches ? e.touches[0].clientX : e.clientX
+  }
+
+  const handleTouchMove = (e) => {
+    if (!isTouchingRef.current) return
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
+    touchDeltaXRef.current = clientX - touchStartXRef.current
+  }
+
+  const handleTouchEnd = () => {
+    if (!isTouchingRef.current) return
+    const deltaX = touchDeltaXRef.current
+    const swipeThreshold = 50
+    if (Math.abs(deltaX) > swipeThreshold) {
+      if (deltaX < 0) {
+        handleNext()
+      } else {
+        handlePrev()
+      }
+    }
+    isTouchingRef.current = false
+    touchDeltaXRef.current = 0
   }
 
   useEffect(() => {
@@ -33,6 +63,16 @@ export default function CoreValuesSection() {
       }
     }
   }, [currentIndex])
+
+  useEffect(() => {
+    // Autoplay: advance carousel left-to-right
+    autoPlayRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length)
+    }, 2500)
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -111,6 +151,9 @@ export default function CoreValuesSection() {
           <div
             ref={carouselRef}
             className="flex overflow-x-hidden scrollbar-hide space-x-8 py-4 px-2" // Added px-2 for slight padding on edges
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {coreValues.map((value, index) => (
               <div
