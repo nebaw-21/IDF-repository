@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react"
-import { coreValues } from "../Data/coreValues"
 import { 
   TrendingUp, 
   Handshake, 
@@ -9,6 +8,7 @@ import {
 } from "lucide-react"
 
 export default function CoreValuesSection() {
+  const [coreValues, setCoreValues] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
   const sectionRef = useRef(null)
@@ -18,6 +18,14 @@ export default function CoreValuesSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
+
+  // Fetch core values data
+  useEffect(() => {
+    fetch('/data/coreValues.json')
+      .then(response => response.json())
+      .then(data => setCoreValues(data.coreValues))
+      .catch(error => console.error('Error loading core values:', error))
+  }, [])
 
   // Function to render the appropriate icon component
   const renderIcon = (iconName) => {

@@ -1,10 +1,18 @@
-import React, { useEffect, useRef } from "react"
-import { partnerLogos } from "../Data/partners"
+import React, { useEffect, useRef, useState } from "react"
 
 export default function WorkedWithSection() {
+  const [partnerLogos, setPartnerLogos] = useState([])
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const carouselRef = useRef(null)
+
+  // Fetch partners data
+  useEffect(() => {
+    fetch('/data/partners.json')
+      .then(response => response.json())
+      .then(data => setPartnerLogos(data.partnerLogos))
+      .catch(error => console.error('Error loading partners:', error))
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(

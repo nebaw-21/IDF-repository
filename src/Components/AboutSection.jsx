@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useRef } from "react"
-import aboutImage from "../assets/about.png"
-import { whyUsItems } from "../Data/whyChooseUs"
 
 export default function WhyUsSection() {
+  const [whyUsItems, setWhyUsItems] = useState([])
   const [openItem, setOpenItem] = useState(1) // Start with 'Experiences' (id 1) open
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const accordionRef = useRef(null)
   const imageRef = useRef(null)
+
+  // Fetch why choose us data
+  useEffect(() => {
+    fetch('/data/whyChooseUs.json')
+      .then(response => response.json())
+      .then(data => setWhyUsItems(data.whyUsItems))
+      .catch(error => console.error('Error loading why choose us data:', error))
+  }, [])
 
   const toggleItem = (id) => {
     setOpenItem(openItem === id ? null : id)
@@ -113,7 +120,7 @@ export default function WhyUsSection() {
                      {/* Right Content - Illustration */}
            <div ref={imageRef} className="w-full h-64 sm:h-80 md:h-96 relative overflow-hidden rounded-3xl shadow-2xl shadow-[#1A2F55]/20 transform hover:scale-105 transition-transform duration-500 animate-slide-up-delay-2">
              <img
-               src={aboutImage}
+               src="/assets/about.png"
                alt="iDaptive Data Fusion System Illustration"
                className="w-full h-full object-cover"
              />

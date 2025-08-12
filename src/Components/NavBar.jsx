@@ -1,14 +1,29 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react'
-import Logo from "../assets/logo.jpg"
 
 export default function Menubar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [menuItems, setMenuItems] = useState([])
   const navRef = useRef(null)
   const logoRef = useRef(null)
   const menuRef = useRef(null)
+
+  // Fetch navigation data
+  useEffect(() => {
+    fetch('/data/navigation.json')
+      .then(response => response.json())
+      .then(data => {
+        // Transform navLinks to menuItems format
+        const items = data.navLinks.map(link => ({
+          name: link.name,
+          href: link.href.replace('#', '') // Remove # from href
+        }))
+        setMenuItems(items)
+      })
+      .catch(error => console.error('Error loading navigation data:', error))
+  }, [])
 
   const toggleMenu = () => {
     if (!isAnimating) {
@@ -98,13 +113,7 @@ export default function Menubar() {
     }
   }, [isMenuOpen])
 
-  const menuItems = [
-    { name: 'Home', href: 'home' },
-    { name: 'About', href: 'about' },
-    { name: 'Services', href: 'services' },
-    { name: 'Projects', href: 'projectS' },
-    { name: 'Contact', href: 'contact' }
-  ]
+
 
   return (
     <nav ref={navRef} className="bg-[#1A2F55] shadow-lg sticky top-0 z-50 animate-fade-in">
@@ -116,7 +125,7 @@ export default function Menubar() {
               onClick={() => scrollToSection('home')}
               className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
             >
-              <img src={Logo} alt="Logo" className="w-25 h-20  p-4  cover-fit" />
+              <img src="/assets/logo.jpg" alt="Logo" className="w-25 h-20  p-4  cover-fit" />
             </button>
           </div>
 

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import { ArrowUpRight } from "lucide-react" // Using Lucide React for icons
-import { projects } from "../Data/projects"
 
 export default function ProjectsSection() {
+  const [projects, setProjects] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
   const sectionRef = useRef(null)
@@ -12,6 +12,14 @@ export default function ProjectsSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
+
+  // Fetch projects data
+  useEffect(() => {
+    fetch('/data/projects.json')
+      .then(response => response.json())
+      .then(data => setProjects(data.projects))
+      .catch(error => console.error('Error loading projects:', error))
+  }, [])
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
