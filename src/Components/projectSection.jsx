@@ -169,43 +169,43 @@ export default function ProjectsSection() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="flex-shrink-0 w-full md:w-[calc(50%-1rem)]" // 1 card on mobile, 2 on medium/large
+                className="flex-shrink-0 w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1rem)]" // 1 card on mobile, 3 on medium/large
               >
-                <div
-                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col animate-fade-in-delay-${index + 3} ${
-                    index === currentIndex || (index === currentIndex + 1 && window.innerWidth >= 768)
-                      ? "border-[#5BC0F8] shadow-2xl" // Highlight active and next card on larger screens
-                      : ""
-                  }`}
-                >
-                  <div className="flex items-start mb-6">
-                    <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
-                      <img
-                        src={project.image}
-                        alt={`${project.title} logo`}
-                        className="w-full h-full object-contain p-2"
-                      />
-                    </div>
-                    <div className="ml-6 flex-grow">
-                      <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-2 leading-tight poppins-bold">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm sm:text-base poppins-regular">{project.description}</p>
-                    </div>
-                  </div>
-                  <div className="mt-auto flex justify-end">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-[#5BC0F8] hover:text-[#FFA500] font-semibold transition-colors duration-200 poppins-semibold"
-                      aria-label={`Learn more about ${project.title}`}
-                    >
-                      View Project
-                      <ArrowUpRight className="ml-1 w-5 h-5" />
-                    </a>
-                  </div>
-                </div>
+                                 <div
+                   className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-[280px] sm:h-[320px] animate-fade-in-delay-${index + 3} ${
+                     index === currentIndex || (index === currentIndex + 1 && window.innerWidth >= 768) || (index === currentIndex + 2 && window.innerWidth >= 1024)
+                       ? "border-[#5BC0F8] shadow-2xl" // Highlight active and next cards on larger screens
+                       : ""
+                   }`}
+                 >
+                   <div className="flex flex-col sm:flex-row sm:items-start mb-6 flex-1">
+                     <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200 mx-auto sm:mx-0 mb-4 sm:mb-0">
+                       <img
+                         src={project.image}
+                         alt={`${project.title} logo`}
+                         className="w-full h-full object-contain p-2"
+                       />
+                     </div>
+                     <div className="sm:ml-6 flex-grow text-center sm:text-left flex flex-col">
+                       <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-2 leading-tight poppins-bold line-clamp-2">
+                         {project.title}
+                       </h3>
+                       <p className="text-gray-600 text-sm sm:text-base poppins-regular line-clamp-3 flex-1">{project.description}</p>
+                     </div>
+                   </div>
+                   <div className="flex justify-center sm:justify-end mt-auto">
+                     <a
+                       href={project.link}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="inline-flex items-center text-[#5BC0F8] hover:text-[#FFA500] font-semibold transition-colors duration-200 poppins-semibold"
+                       aria-label={`Learn more about ${project.title}`}
+                     >
+                       View Project
+                       <ArrowUpRight className="ml-1 w-5 h-5" />
+                     </a>
+                   </div>
+                 </div>
               </div>
             ))}
           </div>
@@ -322,6 +322,21 @@ export default function ProjectsSection() {
         .animate-fade-in-delay-7 {
           animation: fadeIn 0.8s ease-out 0.9s forwards;
           opacity: 0;
+        }
+        
+        /* Line clamp utilities for consistent card heights */
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
     </section>
