@@ -50,14 +50,17 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 text-center md:text-left">
             {/* Company Info */}
             <div ref={companyInfoRef} className="col-span-1 animate-slide-up-delay">
+              <div className="flex  flex-col flex-grow items-center md:items-start">
               <img 
                 src="/assets/logo.jpg" 
                 alt="Company Logo" 
-                className="w-20 h-20  mb-4" 
+                className="w-20 h-20 justify-self-center mb-4" 
               />
               <p className="text-gray-300 text-sm mb-2 poppins-regular">{companyInfo.name}</p>
               <p className="text-[#5BC0F8] text-sm font-semibold poppins-semibold">{companyInfo.tagline}</p>
             </div>
+
+              </div>
   
             {/* Quick Links & Contact Info */}
             <div ref={quickLinksRef} className="col-span-1 animate-slide-up-delay-2">

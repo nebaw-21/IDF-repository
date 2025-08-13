@@ -35,7 +35,8 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <div ref={heroRef} id="home" className="relative md:-mt-30 min-h-screen bg-gradient-to-br from-[#1A2F55] via-[#1A2F55] to-[#0F1B3C] overflow-hidden animate-fade-in">
+    <div ref={heroRef} id="home" className="relative md:-mt-30 min-h-[80vh] sm:min-h-screen bg-gradient-to-br from-[#1A2F55] via-[#1A2F55] to-[#0F1B3C] overflow-hidden animate-fade-in">
+      {/* Adjusted min-h for mobile */}
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-6 sm:top-10 left-2 sm:left-6 w-24 sm:w-40 md:w-72 h-24 sm:h-40 md:h-72 bg-[#5BC0F8]/10 rounded-full blur-xl sm:blur-2xl animate-pulse"></div>

@@ -66,7 +66,7 @@ export default function WorkedWithSection() {
           }
         }
         .animate-scroll-left-to-right {
-          animation: scrollLeftToRight 30s linear infinite; /* Adjust duration as needed */
+          animation: scrollLeftToRight 10s linear infinite; /* Adjust duration as needed */
         }
         
         @keyframes fadeIn {

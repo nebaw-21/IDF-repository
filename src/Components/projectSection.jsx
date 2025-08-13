@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react"
-import { ArrowUpRight } from "lucide-react" // Using Lucide React for icons
+import React from "react"
+import { useState, useRef, useEffect } from "react"
+import { ExternalLink } from "lucide-react" // Using ExternalLink for better symbolism
 
 export default function ProjectsSection() {
   const [projects, setProjects] = useState([])
@@ -15,10 +16,10 @@ export default function ProjectsSection() {
 
   // Fetch projects data
   useEffect(() => {
-    fetch('/data/projects.json')
-      .then(response => response.json())
-      .then(data => setProjects(data.projects))
-      .catch(error => console.error('Error loading projects:', error))
+    fetch("/data/projects.json")
+      .then((response) => response.json())
+      .then((data) => setProjects(data.projects))
+      .catch((error) => console.error("Error loading projects:", error))
   }, [])
 
   const handleNext = () => {
@@ -62,37 +63,37 @@ export default function ProjectsSection() {
   useEffect(() => {
     if (projects.length > 0) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-      }, 2500); // Adjust autoplay interval as needed
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
+      }, 2500)
     }
     return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    };
-  }, [projects]);
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+  }, [projects])
 
   useEffect(() => {
     if (carouselRef.current && projects.length > 0) {
-      const items = Array.from(carouselRef.current.children);
+      const items = Array.from(carouselRef.current.children)
       if (items.length > 0) {
-        const itemWidth = items[0].offsetWidth + 32; // Assuming gap-8 (32px)
+        const itemWidth = items[0].offsetWidth + 32
         carouselRef.current.scrollTo({
           left: currentIndex * itemWidth,
           behavior: "smooth",
-        });
+        })
       }
     }
-  }, [currentIndex, projects]);
+  }, [currentIndex, projects])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
+            entry.target.classList.add("animate-in")
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     )
 
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -103,7 +104,11 @@ export default function ProjectsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="projectS" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in">
+    <section
+      ref={sectionRef}
+      id="projectS"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in"
+    >
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>
@@ -111,13 +116,13 @@ export default function ProjectsSection() {
         <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-[#1A2F55]/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-12 sm:mb-16 animate-slide-up">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
+        <div ref={headerRef} className="text-center mb-16 sm:mb-20 lg:mb-24 animate-slide-up">
+          <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-[#1A2F55] mb-6 poppins-bold">
             Our <span className="text-[#5BC0F8]">Projects</span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
+          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed poppins-regular">
             Below are some of our notable products and projects. We have successfully developed and delivered multiple
             large-scale engagements currently serving our clients as well as users.
           </p>
@@ -125,10 +130,10 @@ export default function ProjectsSection() {
 
         {/* Carousel Container */}
         <div ref={carouselContainerRef} className="relative animate-slide-up-delay">
-          {/* Navigation Arrows - Distinct Style */}
+          {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block animate-fade-in-delay-2"
+            className="absolute -left-4 lg:-left-8 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm border border-[#1A2F55]/20 text-[#1A2F55] p-4 rounded-full shadow-xl hover:bg-[#1A2F55] hover:text-white hover:scale-105 transition-all duration-300 z-20 hidden md:flex items-center justify-center animate-fade-in-delay-2"
             aria-label="Previous project"
           >
             <svg
@@ -143,7 +148,7 @@ export default function ProjectsSection() {
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 border border-[#1A2F55]/20 text-[#1A2F55] p-3 rounded-full shadow-lg hover:bg-[#1A2F55] hover:text-white transition-all duration-300 z-20 hidden md:block animate-fade-in-delay-2"
+            className="absolute -right-4 lg:-right-8 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm border border-[#1A2F55]/20 text-[#1A2F55] p-4 rounded-full shadow-xl hover:bg-[#1A2F55] hover:text-white hover:scale-105 transition-all duration-300 z-20 hidden md:flex items-center justify-center animate-fade-in-delay-2"
             aria-label="Next project"
           >
             <svg
@@ -160,7 +165,7 @@ export default function ProjectsSection() {
           {/* Carousel Track */}
           <div
             ref={carouselRef}
-            className="flex overflow-x-hidden scrollbar-hide space-x-8 py-4 px-2" // Added px-2 for slight padding on edges
+            className="flex overflow-x-hidden scrollbar-hide gap-6 lg:gap-8 py-6 px-4"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -168,55 +173,64 @@ export default function ProjectsSection() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="flex-shrink-0 w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1rem)]" // 1 card on mobile, 3 on medium/large
+                className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)]"
               >
-                                 <div
-                   className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-[280px] sm:h-[320px] animate-fade-in-delay-${index + 3} ${
-                     index === currentIndex || (index === currentIndex + 1 && window.innerWidth >= 768) || (index === currentIndex + 2 && window.innerWidth >= 1024)
-                       ? "border-[#5BC0F8] shadow-2xl" // Highlight active and next cards on larger screens
-                       : ""
-                   }`}
-                 >
-                   <div className="flex flex-col sm:flex-row sm:items-start mb-6 flex-1">
-                     <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200 mx-auto sm:mx-0 mb-4 sm:mb-0">
-                       <img
-                         src={project.image}
-                         alt={`${project.title} logo`}
-                         className="w-full h-full object-contain p-2"
-                       />
-                     </div>
-                     <div className="sm:ml-6 flex-grow text-center sm:text-left flex flex-col">
-                       <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] mb-2 leading-tight poppins-bold line-clamp-2">
-                         {project.title}
-                       </h3>
-                       <p className="text-gray-600 text-sm sm:text-base poppins-regular line-clamp-3 flex-1">{project.description}</p>
-                     </div>
-                   </div>
-                   <div className="flex justify-center sm:justify-end mt-auto">
-                     <a
-                       href={project.link}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="inline-flex items-center text-[#5BC0F8] hover:text-[#FFA500] font-semibold transition-colors duration-200 poppins-semibold"
-                       aria-label={`Learn more about ${project.title}`}
-                     >
-                       View Project
-                       <ArrowUpRight className="ml-1 w-5 h-5" />
-                     </a>
-                   </div>
-                 </div>
+                <div
+                  className={`bg-white rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-[300px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
+                    index === currentIndex ||
+                    (index === currentIndex + 1 && window.innerWidth >= 640) ||
+                    (index === currentIndex + 2 && window.innerWidth >= 1024)
+                      ? "border-[#5BC0F8]/30 shadow-2xl ring-2 ring-[#5BC0F8]/10"
+                      : ""
+                  }`}
+                >
+                  <div className="p-6 sm:p-8 flex flex-col h-full relative">
+                    <div className="absolute top-4 right-4">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-10 h-10 bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white rounded-full transition-all duration-300 group-hover:scale-110 hover:rotate-12"
+                        aria-label={`View ${project.title} project`}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                    </div>
+
+                    <div className="flex items-center gap-4 mb-6 pr-12">
+                      <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
+                        <img
+                          src={project.image || "/placeholder.svg"}
+                          alt={`${project.title} logo`}
+                          className="w-full h-full object-contain p-3"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-[#1A2F55] leading-tight poppins-bold">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="flex-1">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed poppins-regular">
+                        {project.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Carousel Dots - Distinct Style (Line Indicators) */}
-          <div className="flex justify-center mt-8 space-x-2 animate-fade-in-delay-7">
+          {/* Carousel Dots */}
+          <div className="flex justify-center mt-12 space-x-3 animate-fade-in-delay-7">
             {projects.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-6 h-1 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-[#1A2F55] w-8" : "bg-gray-400 hover:bg-gray-500" // Darker dot, expands
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? "bg-[#1A2F55] w-12" : "bg-gray-400 hover:bg-gray-500 w-8"
                 }`}
                 aria-label={`Go to project ${index + 1}`}
               ></button>
@@ -249,13 +263,12 @@ export default function ProjectsSection() {
         .animation-delay-4000 {
           animation-delay: 4s;
         }
-        /* Hide scrollbar for a cleaner look */
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
         .scrollbar-hide {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         
         @keyframes fadeIn {
@@ -323,7 +336,6 @@ export default function ProjectsSection() {
           opacity: 0;
         }
         
-        /* Line clamp utilities for consistent card heights */
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -331,9 +343,17 @@ export default function ProjectsSection() {
           overflow: hidden;
         }
         
-        .line-clamp-3 {
+        .line-clamp-4 {
           display: -webkit-box;
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        /* Added line-clamp-6 for better description display */
+        .line-clamp-6 {
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
@@ -341,4 +361,3 @@ export default function ProjectsSection() {
     </section>
   )
 }
-
