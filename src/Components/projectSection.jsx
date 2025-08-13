@@ -60,29 +60,28 @@ export default function ProjectsSection() {
   }
 
   useEffect(() => {
-    if (carouselRef.current) {
-      const items = Array.from(carouselRef.current.children)
+    if (projects.length > 0) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
+      }, 2500); // Adjust autoplay interval as needed
+    }
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [projects]);
+
+  useEffect(() => {
+    if (carouselRef.current && projects.length > 0) {
+      const items = Array.from(carouselRef.current.children);
       if (items.length > 0) {
-        // Calculate scroll amount based on the first item's width and gap
-        // Assuming gap-8 (32px) between items
-        const itemWidth = items[0].offsetWidth + 32
+        const itemWidth = items[0].offsetWidth + 32; // Assuming gap-8 (32px)
         carouselRef.current.scrollTo({
           left: currentIndex * itemWidth,
           behavior: "smooth",
-        })
+        });
       }
     }
-  }, [currentIndex])
-
-  useEffect(() => {
-    // Autoplay: advance carousel left-to-right
-    autoPlayRef.current = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
-    }, 2500)
-    return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
-    }
-  }, [])
+  }, [currentIndex, projects]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -342,3 +341,4 @@ export default function ProjectsSection() {
     </section>
   )
 }
+

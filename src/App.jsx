@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HomePage from '../Pages/HomePage.jsx';
+import HomePage from './Pages/HomePage.jsx';
 import './index.css';
 import Loading from './Components/LoadingComponent.jsx';
 

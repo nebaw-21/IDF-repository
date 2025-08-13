@@ -80,28 +80,28 @@ export default function CoreValuesSection() {
   }
 
   useEffect(() => {
-    if (carouselRef.current) {
-      const items = Array.from(carouselRef.current.children)
+    if (coreValues.length > 0) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length);
+      }, 2500); // Adjust autoplay interval as needed
+    }
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [coreValues]);
+
+  useEffect(() => {
+    if (carouselRef.current && coreValues.length > 0) {
+      const items = Array.from(carouselRef.current.children);
       if (items.length > 0) {
-        // Calculate scroll amount based on the first item's width and gap
-        const itemWidth = items[0].offsetWidth + 32 // Assuming gap-8 (32px)
+        const itemWidth = items[0].offsetWidth + 32; // Assuming gap-8 (32px)
         carouselRef.current.scrollTo({
           left: currentIndex * itemWidth,
           behavior: "smooth",
-        })
+        });
       }
     }
-  }, [currentIndex])
-
-  useEffect(() => {
-    // Autoplay: advance carousel left-to-right
-    autoPlayRef.current = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length)
-    }, 2500)
-    return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
-    }
-  }, [])
+  }, [currentIndex, coreValues]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
