@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import React from "react"
+import servicesData from "../../public/data/services.json"
 import { 
   Code2, 
   BarChart3, 
@@ -12,7 +13,7 @@ import {
 } from "lucide-react"
 
 export default function ServicesSection() {
-  const [services, setServices] = useState([])
+  const [services] = useState(servicesData.services)
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
   const sectionRef = useRef(null)
@@ -22,14 +23,6 @@ export default function ServicesSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
-
-  // Fetch services data
-  useEffect(() => {
-    fetch('/data/services.json')
-      .then(response => response.json())
-      .then(data => setServices(data.services))
-      .catch(error => console.error('Error loading services:', error))
-  }, [])
 
   // Function to render the appropriate icon component
   const renderIcon = (iconName) => {

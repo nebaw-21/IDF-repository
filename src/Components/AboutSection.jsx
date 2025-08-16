@@ -1,20 +1,13 @@
 import React, { useState, useEffect, useRef } from "react"
+import whyChooseUsData from "../../public/data/whyChooseUs.json"
 
 export default function WhyUsSection() {
-  const [whyUsItems, setWhyUsItems] = useState([])
+  const [whyUsItems] = useState(whyChooseUsData.whyUsItems)
   const [openItem, setOpenItem] = useState(1) // Start with 'Experiences' (id 1) open
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const accordionRef = useRef(null)
   const imageRef = useRef(null)
-
-  // Fetch why choose us data
-  useEffect(() => {
-    fetch('/data/whyChooseUs.json')
-      .then(response => response.json())
-      .then(data => setWhyUsItems(data.whyUsItems))
-      .catch(error => console.error('Error loading why choose us data:', error))
-  }, [])
 
   const toggleItem = (id) => {
     setOpenItem(openItem === id ? null : id)

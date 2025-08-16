@@ -1,27 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
+import navigationData from "../../public/data/navigation.json";
 
 export default function Footer() {
-    const [navLinks, setNavLinks] = useState([])
-    const [contactInfo, setContactInfo] = useState({})
-    const [companyInfo, setCompanyInfo] = useState({})
+    const [navLinks] = useState(navigationData.navLinks);
+    const [contactInfo] = useState(navigationData.contactInfo);
+    const [companyInfo] = useState(navigationData.companyInfo);
     const currentYear = new Date().getFullYear()
     const footerRef = useRef(null)
     const companyInfoRef = useRef(null)
     const quickLinksRef = useRef(null)
     const contactInfoRef = useRef(null)
     const copyrightRef = useRef(null)
-
-    // Fetch navigation data
-    useEffect(() => {
-      fetch('/data/navigation.json')
-        .then(response => response.json())
-        .then(data => {
-          setNavLinks(data.navLinks)
-          setContactInfo(data.contactInfo)
-          setCompanyInfo(data.companyInfo)
-        })
-        .catch(error => console.error('Error loading navigation data:', error))
-    }, [])
 
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -184,4 +173,4 @@ export default function Footer() {
       </footer>
     )
   }
-  
+         

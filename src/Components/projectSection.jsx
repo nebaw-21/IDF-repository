@@ -1,9 +1,10 @@
 import React from "react"
 import { useState, useRef, useEffect } from "react"
 import { ExternalLink } from "lucide-react" // Using ExternalLink for better symbolism
+import projectsData from "../../public/data/projects.json"
 
 export default function ProjectsSection() {
-  const [projects, setProjects] = useState([])
+  const [projects] = useState(projectsData.projects)
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef(null)
   const sectionRef = useRef(null)
@@ -13,14 +14,6 @@ export default function ProjectsSection() {
   const touchStartXRef = useRef(0)
   const touchDeltaXRef = useRef(0)
   const autoPlayRef = useRef(null)
-
-  // Fetch projects data
-  useEffect(() => {
-    fetch("/data/projects.json")
-      .then((response) => response.json())
-      .then((data) => setProjects(data.projects))
-      .catch((error) => console.error("Error loading projects:", error))
-  }, [])
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)

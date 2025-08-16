@@ -1,84 +1,77 @@
-import React from 'react';
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react";
+import navigationData from "../../public/data/navigation.json";
 
 export default function Menubar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
-  const [menuItems, setMenuItems] = useState([])
-  const navRef = useRef(null)
-  const logoRef = useRef(null)
-  const menuRef = useRef(null)
-
-  // Fetch navigation data
-  useEffect(() => {
-    fetch('/data/navigation.json')
-      .then(response => response.json())
-      .then(data => {
-        // Transform navLinks to menuItems format
-        const items = data.navLinks.map(link => ({
-          name: link.name,
-          href: link.href.replace('#', '') // Remove # from href
-        }))
-        setMenuItems(items)
-      })
-      .catch(error => console.error('Error loading navigation data:', error))
-  }, [])
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [menuItems] = useState(
+    navigationData.navLinks.map((link) => ({
+      name: link.name,
+      href: link.href.replace("#", ""), // Remove # from href
+    }))
+  );
+  const navRef = useRef(null);
+  const logoRef = useRef(null);
+  const menuRef = useRef(null);
 
   const toggleMenu = () => {
     if (!isAnimating) {
-      setIsAnimating(true)
-      setIsMenuOpen(!isMenuOpen)
-      setTimeout(() => setIsAnimating(false), 300)
+      setIsAnimating(true);
+      setIsMenuOpen(!isMenuOpen);
+      setTimeout(() => setIsAnimating(false), 300);
     }
-  }
+  };
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
+        behavior: "smooth",
+        block: "start",
+      });
     }
-    setIsMenuOpen(false) // Close mobile menu after clicking
-  }
+    setIsMenuOpen(false); // Close mobile menu after clicking
+  };
 
   // Intersection Observer to track active section
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -80% 0px', // Adjust these values to control when a section is considered "active"
-      threshold: 0
-    }
+      rootMargin: "-20% 0px -80% 0px", // Adjust these values to control when a section is considered "active"
+      threshold: 0,
+    };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
-        }
-      })
-    }, observerOptions)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      observerOptions
+    );
 
     // Observe all sections
-    const sections = ['home', 'about', 'services', 'projectS', 'contact']
-    sections.forEach(sectionId => {
-      const element = document.getElementById(sectionId)
+    const sections = ["home", "about", "services", "projectS", "contact"];
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
       if (element) {
-        observer.observe(element)
+        observer.observe(element);
       }
-    })
+    });
 
     return () => {
-      sections.forEach(sectionId => {
-        const element = document.getElementById(sectionId)
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
         if (element) {
-          observer.unobserve(element)
+          observer.unobserve(element);
         }
-      })
-    }
-  }, [])
+      });
+    };
+  }, []);
 
   // Animation observer
   useEffect(() => {
@@ -86,46 +79,51 @@ export default function Menubar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
+            entry.target.classList.add("animate-in");
           }
-        })
+        });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
 
-    if (navRef.current) observer.observe(navRef.current)
-    if (logoRef.current) observer.observe(logoRef.current)
-    if (menuRef.current) observer.observe(menuRef.current)
+    if (navRef.current) observer.observe(navRef.current);
+    if (logoRef.current) observer.observe(logoRef.current);
+    if (menuRef.current) observer.observe(menuRef.current);
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isMenuOpen])
-
-
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
 
   return (
-    <nav ref={navRef} className="bg-[#1A2F55] shadow-lg sticky top-0 z-50 animate-fade-in">
+    <nav
+      ref={navRef}
+      className="bg-[#1A2F55] shadow-lg sticky top-0 z-50 animate-fade-in"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div ref={logoRef} className="flex-shrink-0 animate-slide-up">
-            <button 
-              onClick={() => scrollToSection('home')}
+            <button
+              onClick={() => scrollToSection("home")}
               className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
             >
-              <img src="/assets/logo.jpg" alt="Logo" className="w-25 h-20  p-4  cover-fit" />
+              <img
+                src="/assets/logo.jpg"
+                alt="Logo"
+                className="w-25 h-20  p-4  cover-fit"
+              />
             </button>
           </div>
 
@@ -136,10 +134,12 @@ export default function Menubar() {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md poppins-medium animate-fade-in-delay-${index + 1} ${
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-200 rounded-md poppins-medium animate-fade-in-delay-${
+                    index + 1
+                  } ${
                     activeSection === item.href
-                      ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
-                      : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
+                      ? "text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30"
+                      : "text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10"
                   }`}
                 >
                   {item.name}
@@ -184,11 +184,11 @@ export default function Menubar() {
                   onClick={() => scrollToSection(item.href)}
                   className={`w-full text-left px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 transform hover:translate-x-2 poppins-medium ${
                     activeSection === item.href
-                      ? 'text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30'
-                      : 'text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10'
+                      ? "text-[#5BC0F8] bg-[#5BC0F8]/10 border border-[#5BC0F8]/30"
+                      : "text-white hover:text-[#5BC0F8] hover:bg-[#5BC0F8]/10"
                   }`}
-                  style={{ 
-                    animation: `slideInDown 0.3s ease-out ${index * 0.1}s both`
+                  style={{
+                    animation: `slideInDown 0.3s ease-out ${index * 0.1}s both`,
                   }}
                 >
                   {item.name}
@@ -208,7 +208,7 @@ export default function Menubar() {
             opacity: 1;
           }
         }
-        
+
         @keyframes slideUp {
           from {
             opacity: 0;
@@ -219,7 +219,7 @@ export default function Menubar() {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes slideInDown {
           from {
             opacity: 0;
@@ -230,45 +230,45 @@ export default function Menubar() {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in {
           animation: fadeIn 0.8s ease-out forwards;
         }
-        
+
         .animate-slide-up {
           animation: slideUp 0.8s ease-out forwards;
         }
-        
+
         .animate-slide-up-delay {
           animation: slideUp 0.8s ease-out 0.2s forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-delay-1 {
           animation: fadeIn 0.6s ease-out 0.3s forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-delay-2 {
           animation: fadeIn 0.6s ease-out 0.4s forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-delay-3 {
           animation: fadeIn 0.6s ease-out 0.5s forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-delay-4 {
           animation: fadeIn 0.6s ease-out 0.6s forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-delay-5 {
           animation: fadeIn 0.6s ease-out 0.7s forwards;
           opacity: 0;
         }
       `}</style>
     </nav>
-  )
+  );
 }
