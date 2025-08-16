@@ -30,7 +30,7 @@ export default function WorkedWithSection() {
     <section
       ref={sectionRef}
       id="worked-with"
-      className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in"
+      className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden -mt-15  md:-mt-28 animate-fade-in"
     >
       {/* Section Header */}
       <div

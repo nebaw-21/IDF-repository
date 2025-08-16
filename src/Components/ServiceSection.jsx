@@ -1,16 +1,7 @@
-import { useState, useRef, useEffect } from "react"
 import React from "react"
+import { useState, useRef, useEffect } from "react"
 import servicesData from "../../public/data/services.json"
-import { 
-  Code2, 
-  BarChart3, 
-  Users, 
-  CheckCircle, 
-  Building2, 
-  GraduationCap, 
-  Brain, 
-  Database 
-} from "lucide-react"
+import { Code2, BarChart3, Users, CheckCircle, Building2, GraduationCap, Brain, Database } from "lucide-react"
 
 export default function ServicesSection() {
   const [services] = useState(servicesData.services)
@@ -36,7 +27,7 @@ export default function ServicesSection() {
       Brain: Brain,
       Database: Database,
     }
-    
+
     const IconComponent = iconMap[iconName]
     return IconComponent ? <IconComponent className="w-8 h-8 text-[#5BC0F8]" /> : null
   }
@@ -82,12 +73,12 @@ export default function ServicesSection() {
   useEffect(() => {
     if (services.length > 0) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
-      }, 2500); // Adjust autoplay interval as needed
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length)
+      }, 2500) // Adjust autoplay interval as needed
     }
     return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    };
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
   }, [services])
 
   useEffect(() => {
@@ -108,11 +99,11 @@ export default function ServicesSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
+            entry.target.classList.add("animate-in")
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     )
 
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -191,25 +182,32 @@ export default function ServicesSection() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)]" // Responsive widths
+                className="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)] flex" // Added flex to container
               >
                 <div
-                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-${index + 3} ${
+                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 transform hover:scale-105 transition-all duration-300 animate-fade-in-delay-${index + 3} w-full flex flex-col h-80 ${
                     index === currentIndex ? "border-[#5BC0F8] shadow-2xl" : ""
-                  }`}
+                  }`} // Added w-full flex flex-col h-80 for uniform height
                 >
                   <div className="flex items-center justify-center w-16 h-16 bg-[#5BC0F8]/10 rounded-full mx-auto mb-6">
                     {renderIcon(service.icon)}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] text-center mb-3 poppins-bold">{service.title}</h3>
-                  <p className="text-gray-600 text-sm sm:text-base text-center poppins-regular">{service.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1A2F55] text-center mb-3 poppins-bold">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base text-center poppins-regular flex-grow">
+                    {service.description}
+                  </p>{" "}
+                  {/* Added flex-grow to fill remaining space */}
                 </div>
               </div>
             ))}
           </div>
 
           {/* Carousel Dots */}
-          <div className="flex justify-center mt-8 space-x-3 animate-fade-in-delay-11">
+          <div className="flex justify-center mt-4 sm:mt-8 space-x-3 animate-fade-in-delay-11">
+            {" "}
+            {/* Reduced mobile margin from mt-8 to mt-4 sm:mt-8 */}
             {services.map((_, index) => (
               <button
                 key={index}
@@ -345,4 +343,3 @@ export default function ServicesSection() {
     </section>
   )
 }
-

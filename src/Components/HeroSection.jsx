@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react"
+import React from "react"
+import { useEffect, useRef } from "react"
 import { Rocket, Trophy, Wrench, BarChart3, Bot, Building2, GraduationCap, Search } from "lucide-react"
 
 export default function HeroSection() {
@@ -48,17 +49,17 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-6 pb-6 sm:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[50vh] sm:min-h-[80vh] pt-6 sm:pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center min-h-[50vh] sm:min-h-[80vh] pt-6 sm:pt-20">
           {/* Left Content */}
           <div ref={contentRef} className="text-center lg:text-left order-2 lg:order-1 px-2 sm:px-0 animate-slide-up">
             {/* Main Headline */}
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-8 leading-tight poppins-bold animate-slide-up-delay">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 sm:mb-6 leading-tight poppins-bold animate-slide-up-delay">
               <span className="block">We are building</span>
               <span className="block text-[#5BC0F8]">a better tomorrow</span>
             </h1>
 
             {/* Key Features */}
-            <div className="mb-3 sm:mb-12 animate-slide-up-delay-2">
+            <div className="mb-3 sm:mb-8 animate-slide-up-delay-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
                 <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg backdrop-blur-sm border border-[#5BC0F8]/20 hover:bg-white/10 transition-all duration-300 animate-fade-in-delay-3">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-[#5BC0F8] rounded-full flex items-center justify-center flex-shrink-0">
@@ -230,7 +231,7 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0 hidden sm:block">
         <svg viewBox="0 0 1200 120" className="w-full h-10 sm:h-20 fill-[#F5F9FF]">
           <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"></path>
         </svg>
@@ -323,4 +324,3 @@ export default function HeroSection() {
     </div>
   )
 }
-7

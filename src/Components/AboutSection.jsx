@@ -34,7 +34,7 @@ export default function WhyUsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-10 sm:py-20 bg-[#F5F9FF] overflow-hidden animate-fade-in">
+    <section ref={sectionRef} id="about" className="relative py-10 sm:py-20 md:-mt-4 bg-[#F5F9FF] overflow-hidden animate-fade-in">
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>

@@ -1,12 +1,7 @@
-import React, { useState, useRef, useEffect } from "react"
-import { 
-  TrendingUp, 
-  Handshake, 
-  Smile, 
-  Lightbulb, 
-  Target 
-} from "lucide-react"
-import coreValuesData from "../../public/data/coreValues.json";
+import React from "react"
+import { useState, useRef, useEffect } from "react"
+import { TrendingUp, Handshake, Smile, Lightbulb, Target } from "lucide-react"
+import coreValuesData from "../../public/data/coreValues.json"
 
 export default function CoreValuesSection() {
   const [coreValues] = useState(coreValuesData.coreValues)
@@ -29,7 +24,7 @@ export default function CoreValuesSection() {
       Lightbulb: Lightbulb,
       Target: Target,
     }
-    
+
     const IconComponent = iconMap[iconName]
     return IconComponent ? <IconComponent className="w-10 h-10 text-[#1A2F55]" /> : null
   }
@@ -75,37 +70,37 @@ export default function CoreValuesSection() {
   useEffect(() => {
     if (coreValues.length > 0) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length);
-      }, 2500); // Adjust autoplay interval as needed
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % coreValues.length)
+      }, 2500) // Adjust autoplay interval as needed
     }
     return () => {
-      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    };
-  }, [coreValues]);
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+  }, [coreValues])
 
   useEffect(() => {
     if (carouselRef.current && coreValues.length > 0) {
-      const items = Array.from(carouselRef.current.children);
+      const items = Array.from(carouselRef.current.children)
       if (items.length > 0) {
-        const itemWidth = items[0].offsetWidth + 32; // Assuming gap-8 (32px)
+        const itemWidth = items[0].offsetWidth + 32 // Assuming gap-8 (32px)
         carouselRef.current.scrollTo({
           left: currentIndex * itemWidth,
           behavior: "smooth",
-        });
+        })
       }
     }
-  }, [currentIndex, coreValues]);
+  }, [currentIndex, coreValues])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in')
+            entry.target.classList.add("animate-in")
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     )
 
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -116,7 +111,11 @@ export default function CoreValuesSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="core-values" className="relative py-16 sm:py-24 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in">
+    <section
+      ref={sectionRef}
+      id="core-values"
+      className="relative py-16 sm:py-24 -mt-8 md:-mt-23 bg-[#F5F9FF] overflow-hidden  animate-fade-in"
+    >
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5BC0F8]/20 rounded-full blur-3xl animate-blob"></div>
@@ -183,7 +182,7 @@ export default function CoreValuesSection() {
                 className="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)]" // Responsive widths
               >
                 <div
-                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:scale-105 transition-all duration-300 flex flex-col items-center text-center animate-fade-in-delay-${index + 3} ${
+                  className={`bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 transform hover:scale-105 transition-all duration-300 flex flex-col items-center text-center h-80 animate-fade-in-delay-${index + 3} ${
                     index === currentIndex ? "border-[#FFA500] shadow-2xl" : "" // Highlight active card with orange
                   }`}
                 >
@@ -202,7 +201,7 @@ export default function CoreValuesSection() {
           </div>
 
           {/* Carousel Dots */}
-          <div className="flex justify-center mt-8 space-x-3 animate-fade-in-delay-8">
+          <div className="flex justify-center mt-4 sm:mt-8 space-x-3 animate-fade-in-delay-8">
             {coreValues.map((_, index) => (
               <button
                 key={index}

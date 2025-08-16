@@ -100,7 +100,7 @@ export default function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projectS"
-      className="relative py-20 sm:py-28 lg:py-32 bg-[#F5F9FF] overflow-hidden md:-mt-20 animate-fade-in"
+      className="relative py-20 sm:py-28 lg:py-32 bg-[#F5F9FF] overflow-hidden -mt-15 md:-mt-23 animate-fade-in"
     >
       {/* Background Gradients/Shapes */}
       <div className="absolute inset-0 opacity-10">
@@ -112,17 +112,17 @@ export default function ProjectsSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16 sm:mb-20 lg:mb-24 animate-slide-up">
-          <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-[#1A2F55] mb-6 poppins-bold">
-            Our <span className="text-[#5BC0F8]">Projects</span>
+           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A2F55] mb-4 poppins-bold">
+            Our <span className="text-[#FFA500]">Projects</span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed poppins-regular">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto poppins-regular">
             Below are some of our notable products and projects. We have successfully developed and delivered multiple
             large-scale engagements currently serving our clients as well as users.
           </p>
         </div>
 
         {/* Carousel Container */}
-        <div ref={carouselContainerRef} className="relative animate-slide-up-delay">
+        <div ref={carouselContainerRef} className="relative animate-slide-up-delay -mt-8">
           {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
@@ -199,16 +199,14 @@ export default function ProjectsSection() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-[#1A2F55] leading-tight poppins-bold">
+                        <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-[#1A2F55] leading-tight">
                           {project.title}
                         </h3>
                       </div>
                     </div>
 
                     <div className="flex-1">
-                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed poppins-regular">
-                        {project.description}
-                      </p>
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{project.description}</p>
                     </div>
                   </div>
                 </div>
@@ -217,7 +215,7 @@ export default function ProjectsSection() {
           </div>
 
           {/* Carousel Dots */}
-          <div className="flex justify-center mt-12 space-x-3 animate-fade-in-delay-7">
+          <div className="flex justify-center mt-4 sm:mt-8 space-x-3 animate-fade-in-delay-7">
             {projects.map((_, index) => (
               <button
                 key={index}
