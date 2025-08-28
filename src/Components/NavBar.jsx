@@ -120,7 +120,7 @@ export default function Menubar() {
               className="text-2xl font-bold text-white hover:text-[#5BC0F8] transition-colors poppins-bold"
             >
               <img
-                src="/assets/logo.png"
+                src="/assets/logo.svg"
                 alt="Logo"
                 className="w-25 h-20  p-4  cover-fit"
               />

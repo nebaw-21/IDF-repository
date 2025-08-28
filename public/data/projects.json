@@ -27,6 +27,13 @@
       "title": "IDF ERP",
       "description": "A full-stack intelligent ERP solution that brings significant business operations from marketing, lead generation, CRM, inventory, purchases, payroll, and project management to accounting in one platform.",
       "link": "#"
-    }
+    },
+    {
+      "id": 5,
+      "image": "/assets/KMS.jpeg",
+      "title": "EHPEA Knowledge and Learning Management System",
+      "description": "A web-based knowledge management system and e-Learning Management system based on Moodle. The systems work together with integration.",
+      "link": "#"
+    } 
   ]
 }

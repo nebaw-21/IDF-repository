@@ -41,7 +41,7 @@ export default function Footer() {
             <div ref={companyInfoRef} className="col-span-1 animate-slide-up-delay">
               <div className="flex  flex-col flex-grow items-center md:items-start">
               <img 
-                src="/assets/logo.png" 
+                src="/assets/logo.svg" 
                 alt="Company Logo" 
                 className="w-20 h-20 justify-self-center mb-4" 
               />
