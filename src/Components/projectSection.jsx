@@ -167,7 +167,7 @@ export default function ProjectsSection() {
           {/* Carousel Track */}
           <div
             ref={carouselRef}
-            className="flex overflow-x-hidden scrollbar-hide gap-6 lg:gap-8 py-6 px-4"
+            className="flex overflow-x-auto sm:overflow-x-hidden scrollbar-hide gap-4 sm:gap-6 lg:gap-8 py-6 px-3 sm:px-4 snap-x snap-mandatory sm:snap-none"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -175,10 +175,10 @@ export default function ProjectsSection() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)]"
+                className="flex-shrink-0 w-[88%] xs:w-[80%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)] snap-start"
               >
                 <div
-                  className={`bg-white rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-[300px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
+                  className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-2 sm:hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-auto min-h-[260px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
                     index === currentIndex ||
                     (index === currentIndex + 1 && window.innerWidth >= 640) ||
                     (index === currentIndex + 2 && window.innerWidth >= 1024)
@@ -186,7 +186,7 @@ export default function ProjectsSection() {
                       : ""
                   }`}
                 >
-                  <div className={`p-6 sm:p-8 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-8 sm:pt-10' : ''}`}>
+                  <div className={`p-4 sm:p-6 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-12 sm:pt-16' : ''}`}>
                     <div className="absolute top-4 right-4 flex gap-2 items-center">
                       {project.links && project.links.length === 1 && (
                         <button
@@ -234,23 +234,23 @@ export default function ProjectsSection() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-4 mb-6 pr-12">
-                      <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6 pr-4 sm:pr-12">
+                      <div className="flex-shrink-0 w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
                         <img
                           src={project.image || "/placeholder.svg"}
                           alt={`${project.title} logo`}
-                          className="w-full h-full object-contain p-3"
+                          className="w-full h-full object-contain p-2 sm:p-3"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-[#1A2F55] leading-tight">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2F55] leading-snug break-words hyphens-auto">
                           {project.title}
                         </h3>
                       </div>
                     </div>
 
                     <div className="flex-1">
-                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{project.description}</p>
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-words hyphens-auto">{project.description}</p>
                     </div>
                   </div>
                 </div>
