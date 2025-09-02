@@ -96,6 +96,15 @@ export default function ProjectsSection() {
     return () => observer.disconnect()
   }, [])
 
+  // Click logic: only auto-open when there's a single link; otherwise show individual link pills
+  const handleProjectLinks = (e, project) => {
+    e.preventDefault()
+    const links = project.links || []
+    if (links.length !== 1) return
+    const url = links[0]?.url
+    if (url) window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -177,17 +186,52 @@ export default function ProjectsSection() {
                       : ""
                   }`}
                 >
-                  <div className="p-6 sm:p-8 flex flex-col h-full relative">
-                    <div className="absolute top-4 right-4">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center w-10 h-10 bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white rounded-full transition-all duration-300 group-hover:scale-110 hover:rotate-12"
-                        aria-label={`View ${project.title} project`}
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </a>
+                  <div className={`p-6 sm:p-8 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-8 sm:pt-10' : ''}`}>
+                    <div className="absolute top-4 right-4 flex gap-2 items-center">
+                      {project.links && project.links.length === 1 && (
+                        <button
+                          onClick={(e) => handleProjectLinks(e, project)}
+                          className="inline-flex items-center justify-center w-10 h-10 bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white rounded-full transition-all duration-300 group-hover:scale-110 hover:rotate-12 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8]"
+                          aria-label={`Open link for ${project.title}`}
+                          title="Opens link in new tab"
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                        </button>
+                      )}
+                      {project.links && project.links.length === 2 && (
+                        <div className="flex gap-1">
+                          {project.links.map((l,i) => (
+                            <a
+                              key={i}
+                              href={l.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-3 h-5 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8]"
+                              title={l.label || `Link ${i+1}`}
+                              aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
+                            >
+                              {l.label || `Link ${i+1}`}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                      {project.links && project.links.length > 2 && (
+                        <div className="flex gap-1 -mt-1">
+                          {project.links.slice(0,2).map((l,i) => (
+                            <a
+                              key={i}
+                              href={l.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-3 h-10 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8]"
+                              title={l.label || `Link ${i+1}`}
+                              aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
+                            >
+                              {l.label || `Link ${i+1}`}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-4 mb-6 pr-12">

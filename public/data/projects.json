@@ -5,35 +5,56 @@
       "image": "/assets/ECC.png",
       "title": "Ethiopian Chamber of Commerce Digital Service (ECDS)",
       "description": "A web-based portal enabling ECCSA to offer services digitally to its members and the public, including online registration and service delivery.",
-      "link": "#"
+      "links": [
+        { "label": "Portal", "url": "https://ethiopianchamber.org.et/" }
+      ]
     },
     {
       "id": 2,
       "image": "/assets/II.png",
       "title": "Industry Information System",
       "description": "A data warehousing and visualization platform integrating national and international data sources for the Ministry of Industry.",
-      "link": "#"
+      "links": [
+        { "label": "Industry Info", "url": "http://industryinformation.gov.et/" }
+      ]
     },
     {
       "id": 3,
       "image": "/assets/lab.png",
       "title": "Student Chemistry Lab Simulation",
       "description": "A virtual laboratory environment for Grade 11 Chemistry that enhances practical understanding and bridges lab access gaps in schools.",
-      "link": "#"
+      "links": [
+        { "label": "Chem Lab", "url": "https://idfchem.firebaseapp.com/home" }
+      ]
     },
     {
       "id": 4,
       "image": "/assets/erp.jpg",
       "title": "IDF ERP",
       "description": "A full-stack intelligent ERP solution that brings significant business operations from marketing, lead generation, CRM, inventory, purchases, payroll, and project management to accounting in one platform.",
-      "link": "#"
+      "links": [
+        { "label": "ERP Info", "url": "#" }
+      ]
+    },
+        {
+      "id": 5,
+      "image": "/assets/Tamirt.png",
+      "title": "A Customer Satisfaction Survey Management",
+      "description": "A customer satisfaction survey management web application developed for Ethiopian Tamirt project with comprehensive survey management. And also customizable tabular & chart based reports for the survey customer responses.",
+      "links": [
+        { "label": "Customer Satisfaction Survey", "url": "https://www.ethiopiatamirt-pmrs.gov.et/" },
+        { "label": "Survey Management", "url": "http://www.ethiopiatamirt-pmrs.gov.et:8080/" }
+      ]
     },
     {
-      "id": 5,
+      "id": 6,
       "image": "/assets/KMS.jpeg",
       "title": "EHPEA Knowledge and Learning Management System",
       "description": "A web-based knowledge management system and e-Learning Management system based on Moodle. The systems work together with integration.",
-      "link": "#"
-    } 
+      "links": [
+        { "label": "Knowledge Management", "url": "https://horticampus.ehpea.org/" },
+        { "label": "e-Learning", "url": "https://hortilibrary.ehpea.org/" }
+      ]
+    }
   ]
 }
