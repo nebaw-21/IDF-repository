@@ -113,7 +113,7 @@ export default function ProjectsSection() {
     if (!/^https?:\/\//i.test(url)) url = 'https://' + url
     // Remove trailing slash for consistency (but keep if only protocol + domain)
     if (url.endsWith('/') && url.length > 12) url = url.slice(0, -1)
-  const MAX_LEN = 10 // tighter visible chars before ellipsis (was 16)
+  const MAX_LEN = 16 // tighter visible chars before ellipsis (was 16)
   if (url.length <= MAX_LEN) return url
   return url.slice(0, MAX_LEN - 1) + '…'
   }
@@ -199,8 +199,8 @@ export default function ProjectsSection() {
                       : ""
                   }`}
                 >
-                  <div className={`p-4 sm:p-6 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-12 sm:pt-16' : ''}`}>
-                    <div className="absolute top-4 right-4 flex gap-2 items-center">
+                  <div className={`p-2 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-12 sm:pt-16' : ''}`}>
+                    <div className="absolute top-4  flex gap-2 items-center">
                       {project.links && project.links.length === 1 && (
                         <button
                           onClick={(e) => handleProjectLinks(e, project)}
