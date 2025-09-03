@@ -254,22 +254,24 @@ export default function ProjectsSection() {
                         </div>
                       )}
                     </div>
-                    <div className="flex-1 overflow-y-auto overscroll-contain pr-1 pt-2 custom-scroll">
-                      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4 pr-2 sm:pr-10">
-                        <div className="flex-shrink-0 w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
-                          <img
-                            src={project.image || "/placeholder.svg"}
-                            alt={`${project.title} logo`}
-                            className="w-full h-full object-contain p-2 sm:p-3"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2F55] leading-snug break-words hyphens-auto">
-                            {project.title}
-                          </h3>
-                        </div>
+                    {/* Fixed header (image + title) */}
+                    <div className="flex items-start gap-3 sm:gap-4 mb-2 sm:mb-3 pr-2 sm:pr-10">
+                      <div className="flex-shrink-0 w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
+                        <img
+                          src={project.image || "/placeholder.svg"}
+                          alt={`${project.title} logo`}
+                          className="w-full h-full object-contain p-2 sm:p-3"
+                        />
                       </div>
-                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-words hyphens-auto pb-4 pr-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2F55] leading-snug break-words hyphens-auto">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+                    {/* Scrollable description only */}
+                    <div className="flex-1 overflow-y-auto overscroll-contain pr-2 pb-3 custom-scroll">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-words hyphens-auto">
                         {project.description}
                       </p>
                     </div>
