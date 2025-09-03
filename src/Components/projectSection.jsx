@@ -191,7 +191,7 @@ export default function ProjectsSection() {
                 className="flex-shrink-0 w-[88%] xs:w-[80%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)] snap-start "
               >
                 <div
-                  className={`bg-white p-2 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-2 sm:hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-auto min-h-[260px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
+                  className={`bg-white p-2 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-2 sm:hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-[260px] sm:h-[350px] lg:h-[380px] overflow-hidden animate-fade-in-delay-${index + 3} group ${
                     index === currentIndex ||
                     (index === currentIndex + 1 && window.innerWidth >= 640) ||
                     (index === currentIndex + 2 && window.innerWidth >= 1024)
@@ -200,7 +200,7 @@ export default function ProjectsSection() {
                   }`}
                 >
                   <div className={`p-2 flex flex-col h-full relative ${project.links && project.links.length >= 2 ? 'pt-12 sm:pt-16' : ''}`}>
-                    <div className="absolute top-4  flex gap-2 items-center">
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 flex gap-1 items-center">
                       {project.links && project.links.length === 1 && (
                         <button
                           onClick={(e) => handleProjectLinks(e, project)}
@@ -221,7 +221,7 @@ export default function ProjectsSection() {
                                 href={l.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="swap-pill px-3 h-6 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-32 sm:w-36"
+                                className="swap-pill px-3 h-6 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[9px] sm:text-[10px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-28 sm:w-32"
                                 title={`${l.label || 'Link'} → ${l.url}`}
                                 aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
                               >
@@ -242,7 +242,7 @@ export default function ProjectsSection() {
                                 href={l.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="swap-pill px-3 h-7 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-32 sm:w-36"
+                                className="swap-pill px-3 h-7 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[9px] sm:text-[10px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-28 sm:w-32"
                                 title={`${l.label || 'Link'} → ${l.url}`}
                                 aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
                               >
@@ -254,24 +254,24 @@ export default function ProjectsSection() {
                         </div>
                       )}
                     </div>
-
-                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6 pr-4 sm:pr-12">
-                      <div className="flex-shrink-0 w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
-                        <img
-                          src={project.image || "/placeholder.svg"}
-                          alt={`${project.title} logo`}
-                          className="w-full h-full object-contain p-2 sm:p-3"
-                        />
+                    <div className="flex-1 overflow-y-auto overscroll-contain pr-1 pt-2 custom-scroll">
+                      <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4 pr-2 sm:pr-10">
+                        <div className="flex-shrink-0 w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl flex items-center justify-center overflow-hidden border border-gray-200/50 group-hover:scale-105 transition-transform duration-300">
+                          <img
+                            src={project.image || "/placeholder.svg"}
+                            alt={`${project.title} logo`}
+                            className="w-full h-full object-contain p-2 sm:p-3"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2F55] leading-snug break-words hyphens-auto">
+                            {project.title}
+                          </h3>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2F55] leading-snug break-words hyphens-auto">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </div>
-
-                    <div className="flex-1">
-                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-words hyphens-auto">{project.description}</p>
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed break-words hyphens-auto pb-4 pr-2">
+                        {project.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -417,6 +417,14 @@ export default function ProjectsSection() {
   .swap-pill .pill-label { display: none; }
   .swap-pill:hover .pill-url, .swap-pill:focus .pill-url { display: none; }
   .swap-pill:hover .pill-label, .swap-pill:focus .pill-label { display: inline; }
+  /* Mobile scrollbars hidden for content area */
+  .custom-scroll::-webkit-scrollbar { width: 6px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: rgba(26,47,85,0.25); border-radius: 3px; }
+  @media (max-width: 639px) {
+    .custom-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    .custom-scroll::-webkit-scrollbar { display: none; }
+  }
       `}</style>
     </section>
   )

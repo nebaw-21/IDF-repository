@@ -70,19 +70,32 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* Email */}
+              {/* Email(s) */}
               <div className="flex items-start group animate-fade-in-delay-3">
                 <div className="flex-shrink-0 w-14 h-14 bg-[#FFA500]/10 rounded-full flex items-center justify-center mr-5 group-hover:bg-[#FFA500] group-hover:text-white transition-colors duration-300">
                   <Mail className="w-7 h-7 text-[#FFA500] group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
                   <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Email Us</h4>
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="text-gray-700 text-sm sm:text-base hover:text-[#5BC0F8] transition-colors duration-200 font-medium poppins-medium"
-                  >
-                    {contactInfo.email}
-                  </a>
+                  <div className="flex flex-wrap items-center gap-1 text-gray-700 text-sm sm:text-base font-medium poppins-medium">
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="hover:text-[#5BC0F8] transition-colors duration-200"
+                    >
+                      {contactInfo.email}
+                    </a>
+                    {contactInfo.email2 && (
+                      <>
+                        <span className="text-gray-400">/</span>
+                        <a
+                          href={`mailto:${contactInfo.email2}`}
+                          className="hover:text-[#5BC0F8] transition-colors duration-200"
+                        >
+                          {contactInfo.email2}
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
 

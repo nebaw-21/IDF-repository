@@ -69,10 +69,19 @@ export default function Footer() {
             <div ref={contactInfoRef} className="col-span-1 animate-slide-up-delay-3">
               <h4 className="text-lg font-semibold text-white mb-3 poppins-semibold">Get in Touch</h4>
               <ul className="space-y-1 text-gray-300 text-sm mb-4">
-                <li className="animate-fade-in-delay-4">
+                <li className="animate-fade-in-delay-4 flex flex-wrap items-center gap-1">
+                  <span className="poppins-regular">Email:</span>
                   <a href={`mailto:${contactInfo.email}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
-                    Email: {contactInfo.email}
+                    {contactInfo.email}
                   </a>
+                  {contactInfo.email2 && (
+                    <>
+                      <span className="text-gray-500">/</span>
+                      <a href={`mailto:${contactInfo.email2}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
+                        {contactInfo.email2}
+                      </a>
+                    </>
+                  )}
                 </li>
                 <li className="animate-fade-in-delay-5 flex flex-wrap items-center gap-1">
                   <a href={`tel:${contactInfo.phone}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
