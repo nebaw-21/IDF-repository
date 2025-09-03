@@ -188,10 +188,10 @@ export default function ProjectsSection() {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="flex-shrink-0 w-[88%] xs:w-[80%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)] snap-start"
+                className="flex-shrink-0 w-[88%] xs:w-[80%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(33.333%-21px)] snap-start "
               >
                 <div
-                  className={`bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-2 sm:hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-auto min-h-[260px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
+                  className={`bg-white p-2 rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100/50 transform hover:-translate-y-2 sm:hover:-translate-y-3 hover:shadow-2xl transition-all duration-500 flex flex-col h-auto min-h-[260px] sm:h-[350px] lg:h-[380px] animate-fade-in-delay-${index + 3} group ${
                     index === currentIndex ||
                     (index === currentIndex + 1 && window.innerWidth >= 640) ||
                     (index === currentIndex + 2 && window.innerWidth >= 1024)
