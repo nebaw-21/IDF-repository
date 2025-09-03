@@ -113,9 +113,9 @@ export default function ProjectsSection() {
     if (!/^https?:\/\//i.test(url)) url = 'https://' + url
     // Remove trailing slash for consistency (but keep if only protocol + domain)
     if (url.endsWith('/') && url.length > 12) url = url.slice(0, -1)
-    const MAX_LEN = 24 // visible chars before ellipsis
-    if (url.length <= MAX_LEN) return url
-    return url.slice(0, MAX_LEN - 1) + '…'
+  const MAX_LEN = 10 // tighter visible chars before ellipsis (was 16)
+  if (url.length <= MAX_LEN) return url
+  return url.slice(0, MAX_LEN - 1) + '…'
   }
 
   return (
@@ -221,7 +221,7 @@ export default function ProjectsSection() {
                                 href={l.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="swap-pill px-3 h-6 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-36 sm:w-40"
+                                className="swap-pill px-3 h-6 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-32 sm:w-36"
                                 title={`${l.label || 'Link'} → ${l.url}`}
                                 aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
                               >
@@ -242,7 +242,7 @@ export default function ProjectsSection() {
                                 href={l.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="swap-pill px-3 h-7 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-36 sm:w-40"
+                                className="swap-pill px-3 h-7 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-32 sm:w-36"
                                 title={`${l.label || 'Link'} → ${l.url}`}
                                 aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
                               >
@@ -413,6 +413,10 @@ export default function ProjectsSection() {
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+  /* Swap pill hover/focus visibility */
+  .swap-pill .pill-label { display: none; }
+  .swap-pill:hover .pill-url, .swap-pill:focus .pill-url { display: none; }
+  .swap-pill:hover .pill-label, .swap-pill:focus .pill-label { display: inline; }
       `}</style>
     </section>
   )
