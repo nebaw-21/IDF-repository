@@ -105,6 +105,19 @@ export default function ProjectsSection() {
     if (url) window.open(url, '_blank', 'noopener,noreferrer')
   }
 
+  // Helper: derive a short, consistent domain display from a URL
+  const getShortUrl = (rawUrl) => {
+    if (!rawUrl || typeof rawUrl !== 'string') return 'link'
+    let url = rawUrl.trim()
+    // Ensure protocol shown
+    if (!/^https?:\/\//i.test(url)) url = 'https://' + url
+    // Remove trailing slash for consistency (but keep if only protocol + domain)
+    if (url.endsWith('/') && url.length > 12) url = url.slice(0, -1)
+    const MAX_LEN = 24 // visible chars before ellipsis
+    if (url.length <= MAX_LEN) return url
+    return url.slice(0, MAX_LEN - 1) + '…'
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -200,36 +213,44 @@ export default function ProjectsSection() {
                       )}
                       {project.links && project.links.length === 2 && (
                         <div className="flex gap-1">
-                          {project.links.map((l,i) => (
-                            <a
-                              key={i}
-                              href={l.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-3 h-5 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8]"
-                              title={l.label || `Link ${i+1}`}
-                              aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
-                            >
-                              {l.label || `Link ${i+1}`}
-                            </a>
-                          ))}
+                          {project.links.map((l,i) => {
+                            const shortTxt = getShortUrl(l.url)
+                            return (
+                              <a
+                                key={i}
+                                href={l.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="swap-pill px-3 h-6 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-36 sm:w-40"
+                                title={`${l.label || 'Link'} → ${l.url}`}
+                                aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
+                              >
+                                <span className="pill-url truncate">{shortTxt}</span>
+                                <span className="pill-label truncate">{l.label || `Link ${i+1}`}</span>
+                              </a>
+                            )
+                          })}
                         </div>
                       )}
                       {project.links && project.links.length > 2 && (
                         <div className="flex gap-1 -mt-1">
-                          {project.links.slice(0,2).map((l,i) => (
-                            <a
-                              key={i}
-                              href={l.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-3 h-10 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#5BC0F8] hover:text-white text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8]"
-                              title={l.label || `Link ${i+1}`}
-                              aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
-                            >
-                              {l.label || `Link ${i+1}`}
-                            </a>
-                          ))}
+                          {project.links.slice(0,2).map((l,i) => {
+                            const shortTxt = getShortUrl(l.url)
+                            return (
+                              <a
+                                key={i}
+                                href={l.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="swap-pill px-3 h-7 inline-flex items-center justify-center rounded-full bg-[#5BC0F8]/10 hover:bg-[#5BC0F8] text-[#1A2F55] hover:text-white text-[10px] sm:text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5BC0F8] w-36 sm:w-40"
+                                title={`${l.label || 'Link'} → ${l.url}`}
+                                aria-label={`Open ${l.label || `Link ${i+1}`} for ${project.title}`}
+                              >
+                                <span className="pill-url truncate">{shortTxt}</span>
+                                <span className="pill-label truncate">{l.label || `Link ${i+1}`}</span>
+                              </a>
+                            )
+                          })}
                         </div>
                       )}
                     </div>

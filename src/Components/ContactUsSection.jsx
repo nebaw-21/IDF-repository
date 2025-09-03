@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react"
-
+import React, { useEffect, useRef, useState } from "react"
+import navigationData from "../../public/data/navigation.json"
 import { MapPin, Mail, Phone } from "lucide-react"
 
 export default function ContactSection() {
@@ -7,6 +7,7 @@ export default function ContactSection() {
   const headerRef = useRef(null)
   const contactCardRef = useRef(null)
   const mapRef = useRef(null)
+  const [contactInfo] = useState(navigationData.contactInfo)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -77,10 +78,10 @@ export default function ContactSection() {
                 <div>
                   <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Email Us</h4>
                   <a
-                    href="mailto:idfeth@gmail.com"
+                    href={`mailto:${contactInfo.email}`}
                     className="text-gray-700 text-sm sm:text-base hover:text-[#5BC0F8] transition-colors duration-200 font-medium poppins-medium"
                   >
-                    idfeth@gmail.com
+                    {contactInfo.email}
                   </a>
                 </div>
               </div>
@@ -92,12 +93,25 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-lg sm:text-xl font-semibold text-[#1A2F55] mb-1 poppins-semibold">Call Us</h4>
-                  <a
-                    href="tel:+251911630791"
-                    className="text-gray-700 text-sm sm:text-base hover:text-[#FFA500] transition-colors duration-200 font-medium poppins-medium"
-                  >
-                    +251 911 630791
-                  </a>
+                  <div className="flex flex-wrap items-center gap-1 text-gray-700 text-sm sm:text-base font-medium poppins-medium">
+                    <a
+                      href={`tel:${contactInfo.phone}`}
+                      className="hover:text-[#FFA500] transition-colors duration-200"
+                    >
+                      {contactInfo.phone}
+                    </a>
+                    {contactInfo.phone2 && (
+                      <>
+                        <span className="text-gray-500">/</span>
+                        <a
+                          href={`tel:${contactInfo.phone2}`}
+                          className="hover:text-[#FFA500] transition-colors duration-200"
+                        >
+                          {contactInfo.phone2}
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

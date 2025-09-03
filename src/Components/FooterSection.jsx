@@ -74,10 +74,18 @@ export default function Footer() {
                     Email: {contactInfo.email}
                   </a>
                 </li>
-                <li className="animate-fade-in-delay-5">
+                <li className="animate-fade-in-delay-5 flex flex-wrap items-center gap-1">
                   <a href={`tel:${contactInfo.phone}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
                     Phone: {contactInfo.phone}
                   </a>
+                  {contactInfo.phone2 && (
+                    <>
+                      <span className="text-gray-500">/</span>
+                      <a href={`tel:${contactInfo.phone2}`} className="hover:text-[#5BC0F8] transition-colors duration-200 poppins-regular">
+                        {contactInfo.phone2}
+                      </a>
+                    </>
+                  )}
                 </li>
                 <li className="poppins-regular animate-fade-in-delay-6">
                   Address: {contactInfo.address}

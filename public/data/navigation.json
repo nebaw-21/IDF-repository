@@ -3,11 +3,13 @@
     { "name": "Home", "href": "#home" },
     { "name": "About", "href": "#about" },
     { "name": "Services", "href": "#services" },
+    { "name": "Projects", "href": "#projectS" },
     { "name": "Contact", "href": "#contact" }
   ],
   "contactInfo": {
-    "email": "idfeth@gmail.com",
+    "email": "info@idfeth.com",
     "phone": "+251911630791",
+    "phone2": "+251944182382",
     "address": "Jomo Kenyatta Avenue, Mekane Iyesus Building, House No 227B Office No 204"
   },
   "companyInfo": {
